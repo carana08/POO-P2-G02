@@ -18,5 +18,10 @@ public class Empleado extends Persona{
         this.estado = estado;
         this.servicios = servicios;
     }
-    public void agregarEmpleado()
+    //Metodo agregarEmpleado
+    public void agregarEmpleado(String nombre, String apellido, String cedula, String telefono, String email, String estado){
+        //Creación de objeto Persona
+        Empleado e = new Empleado(nombre, apellido, cedula, telefono, email, estado, servicios);
+        
+    }
 }
