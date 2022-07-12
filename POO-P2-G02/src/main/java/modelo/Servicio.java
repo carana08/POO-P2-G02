@@ -33,41 +33,47 @@ public class Servicio {
         return servicios;
     }
     //Setters
-    public void setNombreServicio(String Servicio)
+    public void setNombreServicio(String nombreServicio){
+        this.nombreServicio = nombreServicio;
+    }
+    public void setEstado(String estado){
+        this.estado = estado;
+    }
+    public void setTipoServicio(String tipoServicio){
+        this.tipoServicio = tipoServicio;
+    }
+    public void setDuracionServicio(int duracionServicio){
+        this.duracionServicio = duracionServicio;
+    }
+    public void setPrecio(float precio){
+        this.precio = precio;
+    }
+    public void setServicios(ArrayList<Servicio> servicios){
+        this.servicios = servicios;
+    }
     //Constructor
-    public Servicio(String nombreServicio, String estado, String tipoServicio,int duracionServicio, float precio){
+    public Servicio(String nombreServicio, String estado, String tipoServicio,int duracionServicio, float precio, ArrayList<Servicio> servicios){
         this.nombreServicio = nombreServicio;
         this.estado = estado;
         this.tipoServicio = tipoServicio;
         this.duracionServicio = duracionServicio;
         this.precio = precio;
+        this.servicios = servicios;
     }
-    //Método agregarServicio
-    public void agregarServicio(String nombre, String estado, String tipo, int duracion, float precio){
-        nombreServicio = nombre;
-        this.estado = estado;
-        tipoServicio = tipo;
-        duracionServicio = duracion;
-        this.precio = precio;
+    //Método agregarServicio: Agrega el nuevo servicio al arreglo
+    public void agregarServicio(Servicio s){
+        servicios.add(s);
     }
-    //Método editarServicio
-    public void editarServicio(String nombre, String estado, String tipo, int duracion, float precio){
-        System.out.println("¿Desea cambiar el servicio? (SI/NO)");
-        String yes_no = sc.nextLine();
-        if (yes_no.equals("NO")){
-            //Se guarda el mismo nombre del servicio
-            this.nombreServicio = nombre;
-        } else if (yes_no.equals("SI")){
-            System.out.println("Ingrese el nombre del servicio nuevo: ");
-            String sActual = sc.nextLine();
-            //Se guarda el nuevo nombre del servicio
-            nombre = sActual;
-        } else {
-            System.out.println("Vuelva a ingresar");
-        }
+    //Método editarServicio: Recibe un servicio y los parametros para cambiarlo
+    public void editarServicio(Servicio s,String nombre, String estado, String tipo, int duracion, float precio){
+        s.setNombreServicio(nombre);
+        s.setEstado(estado);
+        s.setTipoServicio(tipo);
+        s.setDuracionServicio(duracion);
+        s.setPrecio(precio);
     }
-    //Método eliminarServicio
-    public void eliminarServicio(){
-        estado = "Inactivo";
+    //Método eliminarServicio: Recibe un servicio y cambia su estado
+    public void eliminarServicio(Servicio s){
+        s.setEstado("Inactivo");
     }
 }
