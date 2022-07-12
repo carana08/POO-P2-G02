@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
-import java.util.Scanner;
+import java.util.ArrayList;
 /**
  *
  * @author Karen
@@ -12,7 +12,28 @@ public class Servicio {
     private String nombreServicio, estado, tipoServicio;
     private int duracionServicio;
     private float precio;
-    Scanner sc = new Scanner(System.in);
+    private ArrayList<Servicio> servicios = new ArrayList<>();
+    //Getters
+    public String getNombreServicio(){
+        return nombreServicio;
+    }
+    public String getEstado(){
+        return estado;
+    }
+    public String getTipoServicio(){
+        return tipoServicio;
+    }
+    public int getDuracionServicio(){
+       return duracionServicio;
+    }
+    public float getPrecio(){
+       return precio;
+    }
+    public ArrayList<Servicio> getServicios(){
+        return servicios;
+    }
+    //Setters
+    public void setNombreServicio(String Servicio)
     //Constructor
     public Servicio(String nombreServicio, String estado, String tipoServicio,int duracionServicio, float precio){
         this.nombreServicio = nombreServicio;

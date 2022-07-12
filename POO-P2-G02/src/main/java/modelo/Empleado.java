@@ -11,17 +11,14 @@ import java.util.ArrayList;
  */
 public class Empleado extends Persona{
     private String estado;
-    private ArrayList<Empleado> empleados = new ArrayList<Empleado>();
-    private ArrayList<Servicio> servicios = new ArrayList<Servicio>();
+    private ArrayList<Empleado> empleados = new ArrayList<>();
+
     //Getters
     public String getEstado(){
         return estado;
     }
     public ArrayList<Empleado> getEmpleados(){
         return empleados;
-    }
-    public ArrayList<Servicio> getServicios(){
-        return servicios;
     }
     //Setters
     public void setEstado(String estado){
@@ -30,33 +27,28 @@ public class Empleado extends Persona{
     public void setEmpleados(ArrayList<Empleado> empleados){
         this.empleados = empleados;
     }
-    public void setServicios(ArrayList<Servicio> servicios){
-        this.servicios = servicios;
-    }
+
     //Constructor
-    public Empleado(String nombre, String apellido, String cedula, String telefono, String email, String estado, ArrayList<Servicio> servicios, ArrayList<Empleado> empleados){
+    public Empleado(String nombre, String apellido, String cedula, String telefono, String email, String estado,  ArrayList<Empleado> empleados){
         super(nombre, apellido, cedula, telefono, email);
         this.estado = estado;
         this.empleados = empleados;
-        this.servicios = servicios;
-        
     }
-    //Metodo agregarEmpleado
+    //Metodo agregarEmpleado: Recibe un empleado y lo agrega al arreglo
     public void agregarEmpleado(Empleado e){
         empleados.add(e);
     }
-    //Metodo eliminarEmpleado
+    //Metodo eliminarEmpleado: Recibe un empleado y cambia su estado
     public void eliminarEmpleado(Empleado e){
         e.setEstado("Inactivo");
     }
-    //Metodo editarEmpleado
-    public void editarEmpleado(Empleado e, String nombre, String apellido, String cedula, String telefono, String email, String estado, ArrayList<Servicio> servicios){
+    //Metodo editarEmpleado: S
+    public void editarEmpleado(Empleado e, String nombre, String apellido, String cedula, String telefono, String email, String estado){
         e.setNombre(nombre);
         e.setApellido(apellido);
         e.setCedula(cedula);
         e.setTelefono(telefono);
         e.setEmail(email);
         e.setEstado(estado);
-        e.setServicios(servicios);
     }
 }
