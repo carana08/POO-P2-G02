@@ -4,6 +4,7 @@
  */
 package modelo;
 import java.util.ArrayList;
+import java.util.Scanner;
 /**
  *
  * @author Karen
@@ -13,6 +14,8 @@ public class Servicio {
     private int duracionServicio;
     private float precio;
     private ArrayList<Servicio> servicios = new ArrayList<>();
+    //Scanner
+    Scanner sc = new Scanner(System.in);
     //Getters
     public String getNombreServicio(){
         return nombreServicio;
@@ -66,11 +69,19 @@ public class Servicio {
     }
     //Método editarServicio: Recibe un servicio y los parametros para cambiarlo
     public void editarServicio(Servicio s,String nombre, String estado, String tipo, int duracion, float precio){
-        s.setNombreServicio(nombre);
-        s.setEstado(estado);
-        s.setTipoServicio(tipo);
-        s.setDuracionServicio(duracion);
-        s.setPrecio(precio);
+        System.out.println("ATRIBUTOS: \nESTADO \nTIPO \nDURACION \nPRECIO");
+        String respuesta = sc.nextLine();
+        if(respuesta.equals("NOMBRE")){
+            s.setNombreServicio(nombre);
+        } else if(respuesta.equals("ESTADO")){
+            s.setEstado(estado);
+        } else if(respuesta.equals("TIPO")){
+            s.setTipoServicio(tipo);
+        } else if(respuesta.equals("DURACION")){
+            s.setDuracionServicio(duracion);
+        } else if(respuesta.equals("PRECIO")){
+            s.setPrecio(precio);
+        }
     }
     //Método eliminarServicio: Recibe un servicio y cambia su estado
     public void eliminarServicio(Servicio s){
