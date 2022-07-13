@@ -32,7 +32,7 @@ public class Cliente extends Persona{
         super(nombre, apellido, cedula, telefono, email);
         this.datosRepresentante = datosRepresentante;
     }//se crea el contstructor de cliente
-    public void editarCliente(/*String n,String a,String t,String email*/){
+    public void editarCliente(){
       Scanner sc = new Scanner(System.in);
       System.out.println("Ingrese el numero de lo que va a editar");
       System.out.println("1. nombre \n"+"2.apellido \n "+"3. telefono\n"+"4. email\n");
@@ -58,8 +58,9 @@ public class Cliente extends Persona{
           System.out.println("Ingrese el teléfono a editar");
           String t = sc.nextLine();
           this.setTelefono(t);
-          break;    
-      }    
+          break; 
+          
+      }sc.nextLine();    
     }// se crea el metodo editar cliente para editar su informacion 
     public void agregarCliente(String n,String a,  String t,String email, String cedula, String datos){
       Cliente c = new Cliente(datos,n,a,t,email,cedula);
