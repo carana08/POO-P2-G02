@@ -68,19 +68,32 @@ public class Servicio {
         servicios.add(s);
     }
     //Método editarServicio: Recibe un servicio y los parametros para cambiarlo
-    public void editarServicio(Servicio s,String nombre, String estado, String tipo, int duracion, float precio){
-        System.out.println("ATRIBUTOS: \nESTADO \nTIPO \nDURACION \nPRECIO");
-        String respuesta = sc.nextLine();
-        if(respuesta.equals("NOMBRE")){
-            s.setNombreServicio(nombre);
-        } else if(respuesta.equals("ESTADO")){
-            s.setEstado(estado);
-        } else if(respuesta.equals("TIPO")){
-            s.setTipoServicio(tipo);
-        } else if(respuesta.equals("DURACION")){
-            s.setDuracionServicio(duracion);
-        } else if(respuesta.equals("PRECIO")){
-            s.setPrecio(precio);
+    public void editarServicio(Servicio s){
+        System.out.println("Ingrese el número de la opción que desea editar: \n 1.ESTADO \n 2.TIPO \n 3.DURACION \n 4.PRECIO");
+        int i = sc.nextInt();
+        sc.nextLine();
+        switch (i){
+            case 1:
+                System.out.println("Ingrese el nuevo nombre: ");
+                String n = sc.nextLine();
+                s.setNombreServicio(n);
+                break;
+            case 2:
+                System.out.println("Ingrese nuevo estado");
+                String es = sc.nextLine();
+                s.setEstado(es);
+                break;
+            case 3:
+                System.out.println("Ingrese nuevo tipo de servicio");
+                String t = sc.nextLine();
+                s.setTipoServicio(t);
+                break;
+            case 4:
+                System.out.println("Ingrese nueva duración");
+                int d = sc.nextInt();
+                sc.nextLine();
+                s.setDuracionServicio(d);
+                break;
         }
     }
     //Método eliminarServicio: Recibe un servicio y cambia su estado
