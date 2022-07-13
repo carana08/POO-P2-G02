@@ -95,5 +95,12 @@ public class Cita{
       }
     }while(salida.equals("SI"));
   }
+  public void consultarCitaPorFecha(String fecha){
+    for(Cita citaR: cita){
+      if(citaR.getFecha().equals(fecha)){
+        System.out.println(citaR);
+      }
+    }
+  }
 
 }
