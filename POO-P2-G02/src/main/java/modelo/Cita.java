@@ -94,13 +94,13 @@ public class Cita{
       salida="NO";
       }
     }while(salida.equals("SI"));
-  }
+  }//metodo que elimina la cita de la cedula ingresada
   public void consultarCitaPorFecha(String fecha){
     for(Cita citaR: cita){
       if(citaR.getFecha().equals(fecha)){
         System.out.println(citaR);
       }
     }
-  }
+  }// metodo que consulta las citas que hay en la fecha ingresada
 
 }
