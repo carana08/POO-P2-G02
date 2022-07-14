@@ -4,6 +4,7 @@
  */
 package modelo;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -12,7 +13,8 @@ import java.util.ArrayList;
 public class Empleado extends Persona{
     private String estado;
     private ArrayList<Empleado> empleados = new ArrayList<>();
-
+    //Scanner
+    Scanner sc = new Scanner(System.in);
     //Getters
     public String getEstado(){
         return estado;
@@ -43,12 +45,36 @@ public class Empleado extends Persona{
         e.setEstado("Inactivo");
     }
     //Metodo editarEmpleado: S
-    public void editarEmpleado(Empleado e, String nombre, String apellido, String cedula, String telefono, String email, String estado){
-        e.setNombre(nombre);
-        e.setApellido(apellido);
-        e.setCedula(cedula);
-        e.setTelefono(telefono);
-        e.setEmail(email);
-        e.setEstado(estado);
+    public void editarEmpleado(Empleado e){
+        System.out.println("Ingrese el número de la opción que desea editar: \n 1.NOMBRE \n 2.APELLIDO \n 3.TELEFONO \n 4.EMAIL \n 5.ESTADO");
+        int i = sc.nextInt();
+        sc.nextLine();
+        switch (i){
+            case 1:
+                System.out.println("Ingrese el nuevo nombre: ");
+                String n = sc.nextLine();
+                e.setNombre(n);
+                break;
+            case 2:
+                System.out.println("Ingrese el nuevo apellido: ");
+                String a = sc.nextLine();
+                e.setApellido(a);
+                break;
+            case 3:
+                System.out.println("Ingrese el nuevo telefono: ");
+                String t = sc.nextLine();
+                e.setTelefono(t);
+                break;
+            case 4:
+                System.out.println("Ingrese el nuevo email: ");
+                String em = sc.nextLine();
+                e.setEmail(em);
+                break;
+            case 5:
+                System.out.println("Ingrese el nuevo estado: ");
+                String es = sc.nextLine();
+                e.setEstado(es);
+                break;
+        }
     }
 }

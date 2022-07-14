@@ -79,17 +79,17 @@ public class Servicio {
                 s.setNombreServicio(n);
                 break;
             case 2:
-                System.out.println("Ingrese nuevo estado");
+                System.out.println("Ingrese nuevo estado: ");
                 String es = sc.nextLine();
                 s.setEstado(es);
                 break;
             case 3:
-                System.out.println("Ingrese nuevo tipo de servicio");
+                System.out.println("Ingrese nuevo tipo de servicio: ");
                 String t = sc.nextLine();
                 s.setTipoServicio(t);
                 break;
             case 4:
-                System.out.println("Ingrese nueva duración");
+                System.out.println("Ingrese nueva duración: ");
                 int d = sc.nextInt();
                 sc.nextLine();
                 s.setDuracionServicio(d);
