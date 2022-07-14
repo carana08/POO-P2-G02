@@ -9,6 +9,7 @@ package modelo;
  * @author César
  */
 public class Persona {
+
     private String nombre;
     private String apellido;
     private String cedula;
@@ -62,6 +63,9 @@ public class Persona {
         this.telefono = telefono;
         this.email = email;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + ", Apellido: " + apellido + ", Cedula: " + cedula + ", Telefono: " + telefono + ", Correo: " + email;
+    }
 }
