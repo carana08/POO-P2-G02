@@ -55,6 +55,7 @@ public class Persona {
     public String getEmail() {
         return email;
     }
+    public Persona(){}
 
     public Persona(String nombre, String apellido, String cedula, String telefono, String email) {
         this.nombre = nombre;
@@ -66,6 +67,6 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Nombre: " + nombre + ", Apellido: " + apellido + ", Cedula: " + cedula + ", Telefono: " + telefono + ", Correo: " + email;
+       return  "\nNombre: " + this.getNombre() + " \nApellido: " + this.getApellido() + " \nCedula: " + this.getCedula() + " \nTelefono: " + this.getTelefono()+ " \nEmail: " + this.getEmail();
     }
 }

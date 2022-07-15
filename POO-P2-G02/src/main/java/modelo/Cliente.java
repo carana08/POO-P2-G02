@@ -31,6 +31,8 @@ public class Cliente extends Persona {
     public void setArregloC(ArrayList<Cliente> cliente) {
         arregloC = cliente;
     }// se crean los getters y setters de Datos Representante
+    public Cliente(){
+    }
 
     public Cliente(String nombre, String apellido, String cedula, String telefono, String email, String datosRepresentante) {
         super(nombre, apellido, cedula, telefono, email);
@@ -67,14 +69,13 @@ public class Cliente extends Persona {
         }
     }// se crea el metodo editar cliente para editar su informacion 
 
-    public static void agregarCliente(String n, String a, String cedula, String t, String email, String datos) {
-        Cliente c = new Cliente(n, a, cedula,t, email ,datos);
+    public static void agregarCliente(Cliente c) {
         arregloC.add(c);
     }//se crea el metodo agregar Cliente
 
     @Override
     public String toString() {
-        return super.toString() + ", Datos representante: " + datosRepresentante;
+        return "CLIENTE"+super.toString() + "\nDatos representante: " + datosRepresentante;
     }
 
 }

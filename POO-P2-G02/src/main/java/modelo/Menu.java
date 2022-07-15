@@ -9,6 +9,7 @@ package modelo;
  * @author Karen
  */
 public class Menu {
+    /*
     //Se crea un empleado
     Empleado e = new Empleado("Juan", "Flores", "0958164865", "0952564444", "juanflores@hotmail.com", "Activo");
     //Se crean dos cliientes
@@ -28,5 +29,5 @@ public class Menu {
     }
     public void salirSistema(){
         
-    }
+    }*/
 }

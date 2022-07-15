@@ -19,7 +19,7 @@ public class Empleado extends Persona{
     public String getEstado(){
         return estado;
     }
-    public ArrayList<Empleado> getEmpleados(){
+    public static ArrayList<Empleado> getEmpleados(){
         return empleados;
     }
     //Setters
@@ -31,13 +31,14 @@ public class Empleado extends Persona{
     }
 
     //Constructor
-    public Empleado(String nombre, String apellido, String cedula, String telefono, String email, String estado,  ArrayList<Empleado> empleados){
+    public Empleado(){}
+    public Empleado(String nombre, String apellido, String cedula, String telefono, String email, String estado/*,  ArrayList<Empleado> empleados*/){
         super(nombre, apellido, cedula, telefono, email);
         this.estado = estado;
-        this.empleados = empleados;
+        //this.empleados = empleados;
     }
     //Metodo agregarEmpleado: Recibe un empleado y lo agrega al arreglo
-    public void agregarEmpleado(Empleado e){
+    public static void agregarEmpleado(Empleado e){
         empleados.add(e);
     }
     //Metodo eliminarEmpleado: Recibe un empleado y cambia su estado
@@ -79,6 +80,6 @@ public class Empleado extends Persona{
     }
     //Sobreescritura metodo toString
     public String toString(){
-        return "EMPLEADO \nNombre: " + this.getNombre() + " \nApellido: " + this.getApellido() + " \nCedula: " + this.getCedula() + " \nTelefono: " + this.getCedula() + " \nEmail: " + this.getEmail() + " \nEstado:" + this.getEstado();
+        return "EMPLEADO "+super.toString()+ " \nEstado:" + this.getEstado();
     }
 }

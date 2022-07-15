@@ -13,7 +13,7 @@ public class Servicio {
     private String nombreServicio, estado, tipoServicio;
     private int duracionServicio;
     private float precio;
-    private ArrayList<Servicio> servicios = new ArrayList<>();
+    private static ArrayList<Servicio> servicios = new ArrayList<>();
     //Scanner
     Scanner sc = new Scanner(System.in);
     //Getters
@@ -32,7 +32,7 @@ public class Servicio {
     public float getPrecio(){
        return precio;
     }
-    public ArrayList<Servicio> getServicios(){
+    public static ArrayList<Servicio> getServicios(){
         return servicios;
     }
     //Setters
@@ -55,6 +55,8 @@ public class Servicio {
         this.servicios = servicios;
     }
     //Constructor
+    public Servicio(){
+    }
     public Servicio(String nombreServicio, String estado, String tipoServicio,int duracionServicio, float precio, ArrayList<Servicio> servicios){
         this.nombreServicio = nombreServicio;
         this.estado = estado;

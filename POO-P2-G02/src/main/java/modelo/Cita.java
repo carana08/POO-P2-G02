@@ -81,6 +81,7 @@ public class Cita {
         return cliente;
     }
     //getters y setters de las variables definidas
+    public Cita(){}
 
     public Cita(String f, String h, Cliente c, Servicio s, Empleado e, double duracionR) {
         fecha = f;
@@ -104,7 +105,8 @@ public class Cita {
                     cita.add(new Cita(f, h, c, s, e, 0));
                 }
             }
-        }/*Comprueba si el empleado tiene cita en la fecha designada si la tiene muestra que en esa fecha y hora ya hay una cita designada y en caso de no tener crea la cita*/
+        }/*Comprueba si el empleado tiene cita en la fecha designada si la tiene muestra 
+        que en esa fecha y hora ya hay una cita designada y en caso de no tener crea la cita*/
     }
 
     public void eliminarCita(String cedula) {
