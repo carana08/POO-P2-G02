@@ -57,13 +57,12 @@ public class Servicio {
     //Constructor
     public Servicio(){
     }
-    public Servicio(String nombreServicio, String estado, String tipoServicio,int duracionServicio, float precio, ArrayList<Servicio> servicios){
+    public Servicio(String nombreServicio, String estado, String tipoServicio,int duracionServicio, float precio){
         this.nombreServicio = nombreServicio;
         this.estado = estado;
         this.tipoServicio = tipoServicio;
         this.duracionServicio = duracionServicio;
         this.precio = precio;
-        this.servicios = servicios;
     }
     //Método agregarServicio: Agrega el nuevo servicio al arreglo
     public void agregarServicio(Servicio s){

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class Atencion {
     //Atributos
     private Cita cita;
-
     private static ArrayList<Atencion> atenciones = new ArrayList<> ();
     //Getters
     public Cita getCita(){
@@ -23,6 +22,9 @@ public class Atencion {
     //Setters
     public void setCita(Cita cita){
         this.cita = cita;
+    }
+    public void setAtenciones(ArrayList<Atencion> atenciones){
+        this.atenciones = atenciones;
     }
     //Constructor
     public Atencion(Cita cita){

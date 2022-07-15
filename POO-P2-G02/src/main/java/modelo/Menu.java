@@ -3,13 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
  * @author Karen
  */
 public class Menu {
-    /*
+    
     //Se crea un empleado
     Empleado e = new Empleado("Juan", "Flores", "0958164865", "0952564444", "juanflores@hotmail.com", "Activo");
     //Se crean dos cliientes
@@ -24,10 +26,31 @@ public class Menu {
     private Cita cita2 = new Cita("16/07/2022", "15:00", c2, s2, e, 0);
     //Se crea 1 atencion
     private Atencion a = new Atencion(cita1);
+    //Declaramos el Scanner
+    Scanner sc = new Scanner(System.in);
     public void iniciarSistema(){
-        System.out.println("Bienvenido al sistema \nSeleccione la opcion que desee realizar: \n");
+        System.out.println("Bienvenido al sistema del Centro de Terapias Therapy \nSeleccione su usuario: \n 1.Cliente \n 2.Empleado");
+        int i = sc.nextInt();
+        sc.nextLine();
+        //Selecciona Cliente
+        switch (i) {
+            //Pedimos que desea hacer como Cliente
+            case 1:
+                System.out.println("Opciones para Clientes: \n 1.Informacion sobre registro \n 2.Edicion de datos");
+                int e = sc.nextInt();
+                sc.nextLine();
+                switch (e){
+                    System.out.println("Seleccione la información que desea \n 1.Cliente \n 2.Empleado \n 3.Servicio");
+                    int o = nextInt();
+                    sc.nextLine();
+                    
+                }
+        //Selecciona empleado
+            case 2:
+                System.out.println("Opciones para Empleados; \n \\");
+        }
     }
     public void salirSistema(){
         
-    }*/
+    }
 }
