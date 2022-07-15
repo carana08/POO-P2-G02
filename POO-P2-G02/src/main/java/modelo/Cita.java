@@ -17,6 +17,7 @@ public class Cita {
     private Cliente cliente;
     private Empleado empleado;
     private Servicio servicio;
+    private int duracionReal;
     private String fecha;
     private String horaInicio;
     private String horaFin;//se crean las variables de la clase cita
@@ -31,6 +32,18 @@ public class Cita {
 
     public void setHoraFin(String horaF) {
         horaFin = horaF;
+    }
+    
+    public void setDuracionReal(int duracionReal){
+        this.duracionReal = duracionReal;
+    }
+    
+    public void setServicio(Servicio s){
+        servicio = s;
+    }
+    
+    public void setEmpleado(Empleado e){
+        empleado = e;
     }
 
     public void setCita(ArrayList<Cita> cita) {

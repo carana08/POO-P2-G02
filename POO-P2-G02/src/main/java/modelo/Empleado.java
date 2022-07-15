@@ -12,7 +12,7 @@ import java.util.Scanner;
  */
 public class Empleado extends Persona{
     private String estado;
-    private ArrayList<Empleado> empleados = new ArrayList<>();
+    private static ArrayList<Empleado> empleados = new ArrayList<>();
     //Scanner
     Scanner sc = new Scanner(System.in);
     //Getters
@@ -76,5 +76,9 @@ public class Empleado extends Persona{
                 e.setEstado(es);
                 break;
         }
+    }
+    //Sobreescritura metodo toString
+    public String toString(){
+        return "EMPLEADO \nNombre: " + this.getNombre() + " \nApellido: " + this.getApellido() + " \nCedula: " + this.getCedula() + " \nTelefono: " + this.getCedula() + " \nEmail: " + this.getEmail() + " \nEstado:" + this.getEstado();
     }
 }
