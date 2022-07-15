@@ -17,25 +17,24 @@ public class Cita {
     private Cliente cliente;
     private Empleado empleado;
     private Servicio servicio;
-    private int duracionReal;
     private String fecha;
+    double duracionR;
     private String horaInicio;
     private String horaFin;//se crean las variables de la clase cita
 
     public void setFecha(String f) {
         fecha = f;
     }
-
+    
+    public void setDuracion(double d){
+        duracionR = d;
+    }
     public void setHoraInicio(String horaI) {
         horaInicio = horaI;
     }
 
     public void setHoraFin(String horaF) {
         horaFin = horaF;
-    }
-    
-    public void setDuracionReal(int duracionReal){
-        this.duracionReal = duracionReal;
     }
     
     public void setServicio(Servicio s){
@@ -52,6 +51,10 @@ public class Cita {
 
     public String getFecha() {
         return fecha;
+    }
+    
+    public double getDuracionR(){
+        return duracionR;
     }
 
     public String getHoraInicio() {
@@ -79,17 +82,18 @@ public class Cita {
     }
     //getters y setters de las variables definidas
 
-    public Cita(String f, String h, Cliente c, Servicio s, Empleado e) {
+    public Cita(String f, String h, Cliente c, Servicio s, Empleado e, double duracionR) {
         fecha = f;
         horaInicio = h;
         cliente = c;
         servicio = s;
         empleado = e;
+        this.duracionR = duracionR;
     }
 
-    public static void crearCita(String f, String h, Cliente c, Servicio s, Empleado e) {
+    public static void crearCita(String f, String h, Cliente c, Servicio s, Empleado e, double d) {
         if (cita.size() == 0) {
-            cita.add(new Cita(f, h, c, s, e));
+            cita.add(new Cita(f, h, c, s, e, 0));
         }// si el arreglo no tiene citas agregara sin problemas la cita
         else {
             for (Cita citaR : cita) {//la varibale de la instancia for citaR que hace referencia a que va a recorrer el arreglo cita
@@ -97,7 +101,7 @@ public class Cita {
                 if (comprobacion) {
                     System.out.println("Creacion invalida el empleador ya tiene cita designada a esta fecha y hora");
                 } else {
-                    cita.add(new Cita(f, h, c, s, e));
+                    cita.add(new Cita(f, h, c, s, e, 0));
                 }
             }
         }/*Comprueba si el empleado tiene cita en la fecha designada si la tiene muestra que en esa fecha y hora ya hay una cita designada y en caso de no tener crea la cita*/
@@ -129,6 +133,11 @@ public class Cita {
                 System.out.println(citaR);
             }
         }
+    }
+    //Sobreescritura metodo toString
+    @Override
+    public String toString(){
+        return "Fecha cita: " +this.getFecha() + "\nHora inicio: " + this.getHoraInicio() +" \nDatos del Cliente: " + this.getCliente().toString() + "\nSERVICIO:" + this.getServicio().toString() +"\nDatos del Empleado:" + this.getEmpleado().toString() + "\nDuracion de la cita en horas:" + this.getDuracionR();
     }
 
 }

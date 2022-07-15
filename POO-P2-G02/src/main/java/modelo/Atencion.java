@@ -37,7 +37,7 @@ public class Atencion {
                 //Se registra el servicio
                 x.setServicio(s);
                 //Se registra la duracion real
-                x.setDuracionReal(duracionRealH);
+                x.setDuracion(duracionRealH);
                 //Validacion de empleado
                 if (x.getEmpleado().equals(e)){
                     //No suceden cambios porque es el mismo empleado
@@ -45,6 +45,7 @@ public class Atencion {
                     //Cambiamos el empleado de la cita, por el nuevo
                     x.setEmpleado(e);
                 }
+                atenciones.add(new Atencion(x));
             //Si su número de cédula no coincide con ninguna cita
             } else {
                 System.out.println("Usted no tiene cita asignada, por lo que no puede registrar su atencion");
