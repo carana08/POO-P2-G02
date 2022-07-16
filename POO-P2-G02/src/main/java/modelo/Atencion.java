@@ -55,7 +55,7 @@ public class Atencion {
         }
     }
     //Sobrecarga del método consultarAtencion
-    public void consultarAtencion(String s){
+    public static void consultarAtencion(String s){
         System.out.println("Seleccione su opción: \n 1.CEDULA CLIENTE \n 2.CEDULA EMPLEADO \n 3.FECHA");
         for (Atencion a: atenciones){
             if (a.getCita().getCliente().getCedula().equals(s)){
