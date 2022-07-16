@@ -156,7 +156,7 @@ servicio=cita.getServicio();
                     
                     //Muesta al usuario el submenu de Atencion
                 case 6: {
-                    System.out.println("Salinedo del Menú");
+                    System.out.println("Saliendo del Menú");
                     break;
                 }//Hace que el usuario salga del programa
                 
