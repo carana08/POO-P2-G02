@@ -27,7 +27,7 @@ public class Sistema {
                 /*Se implementa switch con las posibles opciones que se pueden dar dependiendo de la
                 seleccion del usuario*/
                 case 1: {
-                        System.out.println("Servicios Ofrecidos en Therapy: \n Terapia de Lenguaje \n Terapia Psicopedagógica");
+                        System.out.println("Servicios Ofrecidos en Therapy: \n Terapia de Lenguaje \n Terapia Psicopedagogica");
                         
                     
                     break;
@@ -119,13 +119,41 @@ public class Sistema {
                     sc.nextLine();
                     switch(in){
                         case 1:{
-                            //Falta la creacion de la atencion y la consulta de atencion
-                        //Atencion.
-                        }
+                            System.out.println("Ingrse la cedula del Cliente ");
+                              String cedulaC= sc.nextLine();
+                          System.out.println("Ingrese fecha de la Cita");
+                          String fecha = sc.nextLine();
+                          Cita citaC=new Cita();
+                          System.out.println("Ingrese cedula de empleado");
+                          String cedulaE= sc.nextLine();
+                          Servicio servicio=new Servicio();
+                          Empleado empleado=new Empleado();
+                          for(Cita cita:Cita.getCita()){
+if((cedulaC.equals(cita.getCliente().getCedula()))&&(cedulaE.equals(cita.getEmpleado().getCedula()))&&(fecha.equals(cita.getFecha()))){
+citaC= cita;                              empleado=cita.getEmpleado();
+servicio=cita.getServicio();
+                            }
+                            else if(cedulaE.equals(cita.getEmpleado())){
+citaC= cita;                               empleado=cita.getEmpleado();
+servicio=cita.getServicio();                           
+                            }
+                                                       }
+                      System.out.println("Ingrese duracion de la cita");
+                          int duracion = sc.nextInt();
+                          sc.nextLine();
+                        Atencion atencion = new Atencion(citaC);
+                          atencion.registrarAtencion(cedulaC,citaC,servicio,duracion,empleado);
+                      break;  }
+                      case 2: {
+                        System.out.println("Para consultar la atencion ingrese la cedula del cliente , cedula de empleado o la fecha");
+                        String ingresoD= sc.nextLine();
+                        Atencion.consultarAtencion(ingresoD);
+                        
+                      break;}
                     }
                     
-                    }
-                    break;
+                    break;}
+                    
                     //Muesta al usuario el submenu de Atencion
                 case 6: {
                     System.out.println("Salinedo del Menú");
@@ -148,3 +176,4 @@ public class Sistema {
         
     }
 }
+
