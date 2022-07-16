@@ -13,6 +13,10 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 public class Sistema {
+    Empleado e = new Empleado("Juan", "Flores", "0958164865", "0952564444", "juanflores@hotmail.com", "Activo");
+        
+    
+    
 
     public void inicializarSistema() {
         // Se crea inicializarSistema
@@ -107,11 +111,12 @@ public class Sistema {
                         case 3:{
                             System.out.print("Ingrese la fecha a consultar: ");
                             String fecha = sc.nextLine();
-                            Cita c=new Cita();
-                            c.consultarCitaPorFecha(fecha);}break;
+                            for(Cita citaC: Cita.getCita()){
+                            if(fecha.equals(citaC.getFecha()))
+                            citaC.consultarCitaPorFecha(fecha);}
                     }
                     break;
-                }//Muestra al usuario el submenu de Cita;
+                }}break;//Muestra al usuario el submenu de Cita;
                 case 5: {
                     
                       System.out.println("1.Registar Atencion\n" +"2.Consultar Atencion" );
@@ -166,12 +171,23 @@ servicio=cita.getServicio();
 
     public static void main(String[] args) {
         //Servicio s =new Servicio();
-        Cliente c1 = new Cliente("Jose", "Cordova", "1203296213", "0986808147", "jose@hotmail.com", "Madre");
         Empleado e = new Empleado("Miguel", "Ochoa", "12032884843", "098687454", "jose@hotmail.es","Inactivo");
+         Cliente c1 = new Cliente("Maria", "Perez", "09998225553", "0996955651", "mariaperez@hotmail.com", "Papá de Maria");
+     Cliente c2 = new Cliente("Pedro", "Coronel", "0909951111", "0984786321", "pedrocoronel@hotmail.com", "Mamá de Pedro");
+    //Se crean 3 servicios
+     Servicio s1 = new Servicio("Terapcia de Lenguaje", "Activo", "Tipo A", 1, 23.0f);
+     Servicio s2 = new Servicio("Terapia de Colores", "Activo", "Tipo A", 2, 22.5f);
+     Servicio s3 = new Servicio("Terapia Visual", "Activo", "Tipo B", 3, 20.0f);
+     Cita cita1 = new Cita("15/07/2022", "16:00", c1, s1, e, 0);
+     Cita cita2 = new Cita("16/07/2022", "15:00", c2, s2, e, 0);
+        Cita.crearCita("15/07/2022", "16:00", c1, s1, e, 0);
+        //Cliente c1 = new Cliente("Jose", "Cordova", "1203296213", "0986808147", "jose@hotmail.com", "Madre");
+        //Empleado e = new Empleado("Miguel", "Ochoa", "12032884843", "098687454", "jose@hotmail.es","Inactivo");
         //Cita.crearCita("15-07-2022","15:25",c1,s,e);
         Cliente.agregarCliente(c1);
         Sistema s = new Sistema();
         Empleado.agregarEmpleado(e);
+        
         s.inicializarSistema();
         
     }
