@@ -37,7 +37,7 @@ public class Atencion {
         atenciones.add(a);
     }
     //Sobrecarga del método consultarAtencion
-    public static void consultarAtencion(/*String s*/){
+    public static void consultarAtencion(){
         Scanner sc= new Scanner(System.in);
     System.out.println("Ingrese uno de los siguientes datos: \nCEDULA CLIENTE \nCEDULA EMPLEADO \nFECHA");
         String s=sc.nextLine();

@@ -39,7 +39,7 @@ public class Cliente extends Persona {
         this.datosRepresentante = datosRepresentante;
     }//se crea el contstructor de cliente
 
-    public void editarCliente(/*String n,String a,String t,String email*/) {
+    public void editarCliente() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese el numero de lo que va a editar");
         System.out.println("1. nombre \n" + "2.apellido \n " + "3. telefono\n" + "4. email\n");

@@ -341,8 +341,8 @@ public class Sistema {
         Cliente c2 = new Cliente("Pedro", "Coronel", "0909951111", "0984786321", "pedrocoronel@hotmail.com", "Mamá de Pedro");
         //Se crean 3 servicios
         Servicio s1 = new Servicio("terapia de lenguaje", "Activo", 1, 23.0f);
-        Servicio s2 = new Servicio("Terapia de Colores", "Activo", 2, 22.5f);
-        Servicio s3 = new Servicio("Terapia Visual", "Activo", 3, 20.0f);
+        Servicio s2 = new Servicio("terapia de psicopedagogica", "Activo", 2, 22.5f);
+        Servicio s3 = new Servicio("terapia lenguaje 2", "Activo", 3, 20.0f);
         Cita cita1 = new Cita("15/07/2022", "16:00", c1, s1, e, 0);
         Cita cita2 = new Cita("16/07/2022", "15:00", c2, s2, e, 0);
         cita1.crearCita(cita1);
