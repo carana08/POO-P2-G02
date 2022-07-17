@@ -221,7 +221,6 @@ public class Sistema {
                                     c = cliente;
                                 } else {
                                     System.out.println("Cedula no esta en la lista de cliente");
-                                    c = null;
                                 }
                             }
                             System.out.print("Ingrese la cedula del empleado: ");
@@ -232,7 +231,7 @@ public class Sistema {
                                     e = empleado;
                                 } else {
                                     System.out.println("Cedula no esta en la lista de Empleados");
-                                    e = null;
+
                                 }
                             }
                             System.out.print("Ingrese el servicio: ");
@@ -241,12 +240,20 @@ public class Sistema {
                             for (Servicio servi : Servicio.getServicios()) {
                                 if ( (servicio.toLowerCase().equals(servi.getNombreServicio())) || (servicio.toUpperCase().equals(servi.getNombreServicio()))) {
                                     s = servi;
-                                } else {
-                                    System.out.println("Servicio no disponible en el Consultorio ");
-                                    
-                                }
+                                } 
                             }
-                            Cita.crearCita(fecha, hora, c, s, e, 0.0);
+                            for(Cita citaR:Cita.getCita()){
+        if(citaR.getEmpleado().equals(e)&&citaR.getFecha().equals(fecha)&& citaR.getHoraInicio().equals(hora)){
+            
+        
+        }
+        else{
+        
+        
+        }
+        }
+                            Cita cita = new Cita(fecha, hora, c, s, e, 0.0);
+                            cita.crearCita(cita);
                             System.out.println("Cita Agregada");
                         }
                         break;
@@ -254,16 +261,15 @@ public class Sistema {
                         case 2: {
                             System.out.print("Ingrese la cedula del Cliente: ");
                             String cedula = sc.nextLine();
-                            Cita c = new Cita();
-                            c.eliminarCita(cedula);
+                            //Cita c = new Cita();
+                            Cita.eliminarCita(cedula);
                         }
                         break;
                         /*Si la opcion es 3 mostrara las citas en la fecha ingresada por el usuario*/
                         case 3: {
                             System.out.print("Ingrese la fecha a consultar: ");
                             String fecha = sc.nextLine();
-                            Cita c=new Cita();
-                            c.consultarCitaPorFecha(fecha);}break;
+                            Cita.consultarCitaPorFecha(fecha);}break;
                             
                         
                     }}
@@ -276,12 +282,12 @@ public class Sistema {
                     sc.nextLine();
                     switch (in) {
                         case 1: {
-                            System.out.println("Ingrse la cedula del Cliente ");
+                            System.out.println("Ingrese la cedula del Cliente: ");
                             String cedulaC = sc.nextLine();
-                            System.out.println("Ingrese fecha de la Cita");
+                            System.out.println("Ingrese fecha de la Cita: ");
                             String fecha = sc.nextLine();
                             Cita citaC = new Cita();
-                            System.out.println("Ingrese cedula de empleado");
+                            System.out.println("Ingrese cedula de empleado: ");
                             String cedulaE = sc.nextLine();
                             Servicio servicio = new Servicio();
                             Empleado empleado = new Empleado();
@@ -300,7 +306,7 @@ public class Sistema {
                             int duracion = sc.nextInt();
                             sc.nextLine();
                             Atencion atencion = new Atencion(citaC);
-                            atencion.registrarAtencion(cedulaC, citaC, servicio, duracion, empleado);
+                            atencion.registrarAtencion(atencion);
                             System.out.println("Atencion Registrada");
                             break;
                         }
@@ -334,16 +340,21 @@ public class Sistema {
         Cliente c1 = new Cliente("Maria", "Perez", "09998225553", "0996955651", "mariaperez@hotmail.com", "Papá de Maria");
         Cliente c2 = new Cliente("Pedro", "Coronel", "0909951111", "0984786321", "pedrocoronel@hotmail.com", "Mamá de Pedro");
         //Se crean 3 servicios
-        Servicio s1 = new Servicio("terapcia de lenguaje", "Activo", 1, 23.0f);
+        Servicio s1 = new Servicio("terapia de lenguaje", "Activo", 1, 23.0f);
         Servicio s2 = new Servicio("Terapia de Colores", "Activo", 2, 22.5f);
         Servicio s3 = new Servicio("Terapia Visual", "Activo", 3, 20.0f);
         Cita cita1 = new Cita("15/07/2022", "16:00", c1, s1, e, 0);
         Cita cita2 = new Cita("16/07/2022", "15:00", c2, s2, e, 0);
-        System.out.println(Cita.getCita().size());
-        Cita.crearCita("15/07/2022", "16:00", c1, s1, e, 0);
-        System.out.println(Cita.getCita().size());
-        Cita.crearCita("16/07/2022", "16:00", c1, s1, e, 0);
+        cita1.crearCita(cita1);
+        
+        //cita2.crearCita(cita2);
+        System.out.println(Cita.getCita());
         //Cita.crearCita("15-07-2022","15:25",c1,s,e);
+        //System.out.println(s1);
+       Atencion a = new Atencion(cita1);
+        a.registrarAtencion(a);
+        System.out.println(" ");
+        System.out.println(Atencion.getAtenciones());
         Cliente.agregarCliente(c1);
         Cliente.agregarCliente(c2);
         Sistema s = new Sistema();
@@ -351,6 +362,8 @@ public class Sistema {
         Servicio.agregarServicio(s1);
         Servicio.agregarServicio(s2);
         Servicio.agregarServicio(s3);
+        
+        //System.out.println(Servicio.getServicios());
 
         s.inicializarSistema();
 

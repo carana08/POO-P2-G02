@@ -17,7 +17,7 @@ public class Atencion {
     public Cita getCita(){
         return cita;
     }
-    public ArrayList<Atencion> getAtenciones(){
+    public static ArrayList<Atencion> getAtenciones(){
         return atenciones;
     }
     //Setters
@@ -28,47 +28,29 @@ public class Atencion {
         this.atenciones = atenciones;
     }
     //Constructor
+    public Atencion (){};
     public Atencion(Cita cita){
         this.cita = cita;
     }
     //Metodo registrarAtencion
-    public void registrarAtencion(String cedula, Cita c, Servicio s, int duracionRealH, Empleado e){
-        //Recorrer las citas hasta encontrar la que coincide con la cedula del cliente
-        for (Cita x: c.getCita()){
-            //Si coincide la cedula del cliente con la cedula de una cita, se asigna el servicio
-            if (x.getCliente().getCedula().equals(cedula)){
-                //Se registra el servicio
-                x.setServicio(s);
-                //Se registra la duracion real
-                x.setDuracion(duracionRealH);
-                //Validacion de empleado
-                if (x.getEmpleado().equals(e)){
-                    //No suceden cambios porque es el mismo empleado
-                } else {
-                    //Cambiamos el empleado de la cita, por el nuevo
-                    x.setEmpleado(e);
-                }
-                atenciones.add(new Atencion(x));
-            //Si su número de cédula no coincide con ninguna cita
-            } else {
-                System.out.println("Usted no tiene cita asignada, por lo que no puede registrar su atencion");
-            }
-        }
+    public void registrarAtencion(Atencion a){
+        atenciones.add(a);
     }
     //Sobrecarga del método consultarAtencion
     public static void consultarAtencion(/*String s*/){
         Scanner sc= new Scanner(System.in);
-    System.out.println("Ingrese uno de los siguientes datos: \nCEDULA CLIENTE \n CEDULA EMPLEADO \n FECHA");
+    System.out.println("Ingrese uno de los siguientes datos: \nCEDULA CLIENTE \nCEDULA EMPLEADO \nFECHA");
         String s=sc.nextLine();
+        Atencion at= new Atencion();
         for (Atencion a: atenciones){
             if (a.getCita().getCliente().getCedula().equals(s)){
-                a.toString();
+                at=a;
             } else if (a.getCita().getEmpleado().getCedula().equals(s)){
-                a.toString();
+                at=a;
             } else if (a.getCita().getFecha().equals(s)){
-                a.toString();
+                at=a;
             }
-        }
+        }System.out.println(at);
     }
     //Sobreescritua del metodo toString
     @Override
