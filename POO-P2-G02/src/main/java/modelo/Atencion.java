@@ -4,6 +4,7 @@
  */
 package modelo;
 import java.util.ArrayList;
+import java.util.Scanner;
 /**
  *
  * @author Karen
@@ -55,8 +56,10 @@ public class Atencion {
         }
     }
     //Sobrecarga del método consultarAtencion
-    public static void consultarAtencion(String s){
-        System.out.println("Seleccione su opción: \n 1.CEDULA CLIENTE \n 2.CEDULA EMPLEADO \n 3.FECHA");
+    public static void consultarAtencion(/*String s*/){
+        Scanner sc= new Scanner(System.in);
+    System.out.println("Ingrese uno de los siguientes datos: \nCEDULA CLIENTE \n CEDULA EMPLEADO \n FECHA");
+        String s=sc.nextLine();
         for (Atencion a: atenciones){
             if (a.getCita().getCliente().getCedula().equals(s)){
                 a.toString();

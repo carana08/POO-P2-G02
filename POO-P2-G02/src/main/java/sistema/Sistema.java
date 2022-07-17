@@ -13,10 +13,8 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 public class Sistema {
+
     Empleado e = new Empleado("Juan", "Flores", "0958164865", "0952564444", "juanflores@hotmail.com", "Activo");
-        
-    
-    
 
     public void inicializarSistema() {
         // Se crea inicializarSistema
@@ -31,165 +29,330 @@ public class Sistema {
                 /*Se implementa switch con las posibles opciones que se pueden dar dependiendo de la
                 seleccion del usuario*/
                 case 1: {
-                        System.out.println("Servicios Ofrecidos en Therapy: \n Terapia de Lenguaje \n Terapia Psicopedagogica");
-                        
-                    
+                    System.out.println("Servicios Ofrecidos en Therapy: ");
+                    for (Servicio s : Servicio.getServicios()) {
+                        System.out.println("Servicios");
+                        System.out.println(s);
+                    }
+                    System.out.println("Ingrese la opcion de lo que quiere hacer: \n 1. Agregar Servicio \n 2.Editar Servicio \n 3.Eliminar Servicio \n 4.Salir al Menú principal");
+                    int ingresoS = sc.nextInt();
+                    sc.nextLine();
+                    switch (ingresoS) {
+                        case 1: {
+                            System.out.print("Ingrese el nombre del servicio: ");
+                            String nombreS = sc.nextLine();
+                            System.out.print("Ingrese estado del servicio: ");
+                            String estadoS = sc.nextLine();
+                            System.out.print("Ingrese duracion del servicio: ");
+                            int duracionS = sc.nextInt();
+                            sc.nextLine();
+                            System.out.print("Ingrese precio del servicio: ");
+                            double precioS = sc.nextDouble();
+                            sc.nextLine();
+                            Servicio servicio = new Servicio(nombreS, estadoS, duracionS, precioS);
+                            Servicio.agregarServicio(servicio);
+                            System.out.println("Servicio Agregado");
+                            break;
+                        }
+                        case 2: {
+                            System.out.println("Ingrese nombre del servicio");
+                            String nombreS = sc.nextLine();
+                            Servicio servicio = new Servicio();
+                            for (Servicio servicioR : Servicio.getServicios()) {
+                                if (nombreS.equals(servicioR.getNombreServicio())) {
+                                    servicio = servicioR;
+                                }
+                                servicio.editarServicio(servicio);
+                            }
+                            break;
+                        }
+                        case 3: {
+                            System.out.println("Ingrese nombre del servicio");
+                            String nombreS = sc.nextLine();
+                            Servicio servicio = new Servicio();
+                            for (Servicio servicioR : Servicio.getServicios()) {
+                                if (nombreS.equals(servicioR.getNombreServicio())) {
+                                    servicio = servicioR;
+                                }
+                                servicio.editarServicio(servicio);
+                                System.out.println("Eliminando servicio");
+                            }
+                            break;
+                        }
+                        case 4: {
+                            System.out.println("Saliendo del Menú de Servicios");
+                        }
+
+                    }
+
                     break;
-                }//Muestra al usuario los servicios ofrecidos por el centro
-              
+                }//Muestra al usuario los servicios ofrecidos por el centro y el menú de servicios
+
                 case 2: {
-                    for (Empleado c : Empleado.getEmpleados()){
+                    for (Empleado c : Empleado.getEmpleados()) {
                         System.out.println("Empleados");
                         System.out.println(c);
                     }
+                    System.out.println("Ingrese la opcion de lo que quiere hacer: \n 1. Agregar Empleado \n 2.Editar Empleado \n 3.Eliminar Empleado \n 4.Salir al Menú principal");
+                    int ingresoE = sc.nextInt();
+                    sc.nextLine();
+                    switch (ingresoE) {
+                        case 1: {
+                            System.out.print("Ingrese el nombre del Empleado: ");
+                            String nombreE = sc.nextLine();
+                            System.out.print("Ingrese apellido del Empleado: ");
+                            String ApellidoE = sc.nextLine();
+                            System.out.println("Ingrese cédula del Empleado: ");
+                            String cedulaE = sc.nextLine();
+                            System.out.println("Ingrese teléfono del Empleado: ");
+                            String telefonoE = sc.nextLine();
+                            System.out.println("Ingrese email del Empleado: ");
+                            String emailE = sc.nextLine();
+                            System.out.println("Ingrese estado del Empleado");
+                            String estadoE = sc.nextLine();
+                            Empleado empleado = new Empleado(nombreE, ApellidoE, cedulaE, telefonoE, emailE, estadoE);
+                            Empleado.agregarEmpleado(empleado);
+                            System.out.println("Empleado Agregado");
+                            break;
+                        }
+
+                        case 2: {
+                            System.out.println("Ingrese cédula del Empleado");
+                            String cedulaE = sc.nextLine();
+                            Empleado empleado = new Empleado();
+                            for (Empleado empleadoR : Empleado.getEmpleados()) {
+                                if (cedulaE.equals(empleadoR.getCedula())) {
+                                    empleado = empleadoR;
+                                }
+                                empleado.editarEmpleado(empleado);
+                            }
+                            break;
+                        }
+                        case 3: {
+                            System.out.println("Ingrese cedula del Empleado");
+                            String cedulaE = sc.nextLine();
+                            Empleado empleado = new Empleado();
+                            for (Empleado empleadoR : Empleado.getEmpleados()) {
+                                if (cedulaE.equals(empleadoR.getCedula())) {
+                                    empleado = empleadoR;
+                                }
+                                empleado.eliminarEmpleado(empleado);
+                                System.out.println("Eliminando servicio");
+                            }
+                            break;
+                        }
+                        case 4: {
+                            System.out.println("Saliendo del Menú de Empleado");
+                        }
+
+                    }
+
                     break;
-                }//Muesta al usuario la informacion de los empleados del centro
+                }
+                //Muesta al usuario la informacion de los empleados del centro
                 case 3: {
                     for (Cliente c : Cliente.getArregloC()) {
                         System.out.println("Clientes");
                         System.out.println(c);
                     }
+                    System.out.println("Ingrese la opcion de lo que quiere hacer: \n 1. Agregar Cliente \n 2.Editar Cliente \n 3.Salir al Menú principal");
+                    int ingresoE = sc.nextInt();
+                    sc.nextLine();
+                    switch (ingresoE) {
+                        case 1: {
+                            System.out.print("Ingrese el nombre del Cliente: ");
+                            String nombreC = sc.nextLine();
+                            System.out.print("Ingrese apellido del Cliente: ");
+                            String ApellidoC = sc.nextLine();
+                            System.out.println("Ingrese cédula del Cliente: ");
+                            String cedulaC = sc.nextLine();
+                            System.out.println("Ingrese teléfono del Cliente: ");
+                            String telefonoC = sc.nextLine();
+                            System.out.println("Ingrese email del Cliente: ");
+                            String emailC = sc.nextLine();
+                            System.out.println("Ingrese datos del representante del Cliente");
+                            String datosC = sc.nextLine();
+                            Cliente cliente = new Cliente(nombreC, ApellidoC, cedulaC, telefonoC, emailC, datosC);
+                            Cliente.agregarCliente(cliente);
+                            System.out.println("Cliente Agregado");
+                            break;
+                        }
+
+                        case 2: {
+                            System.out.println("Ingrese cédula del Cliente");
+                            String cedulaC = sc.nextLine();
+                            Cliente cliente= new Cliente();
+                            for (Cliente clienteR : Cliente.getArregloC()) {
+                                if (cedulaC.equals(clienteR.getCedula())) {
+                                    cliente = clienteR;
+                                }
+                                cliente.editarCliente();
+                            }
+                            break;
+                        }
+                        
+                        
+                        case 3: {
+                            System.out.println("Saliendo del Menú de Cliente");
+                        }
+
+                    }
                     break;
                 }//Muesta al usuario la informacion de los clientes del centro
                 case 4: {
-                    System.out.println("1.Crear Cita\n" +"2.Eliminar Cita\n" +"3.Consultar citas por fecha");
-                    int in= sc.nextInt();
+                    System.out.println("1.Crear Cita\n" + "2.Eliminar Cita\n" + "3.Consultar citas por fecha");
+                    int in = sc.nextInt();
                     sc.nextLine();
                     /*Con el valor del ingreso mediante switch se ejecutara la opcion relacionada*/
-                    switch(in){
-                        case 1:{
+                    switch (in) {
+                        case 1: {
                             /*Si la opcion es 1 se pedira el ingreso de los atributos necesarios 
                             para poder crear la cita en el caso de cliente y empleado
                             se pedira el ingreso de la cedula para verficarla en el sistema*/
                             System.out.print("Ingrese la fecha de la cita: ");
                             String fecha = sc.nextLine();
                             System.out.print("Ingrese la hora de la cita: ");
-                            String hora=sc.nextLine();
+                            String hora = sc.nextLine();
                             System.out.print("Ingrese la cedula del cliente: ");
                             String cedula = sc.nextLine();
-                            Cliente c=new Cliente();
-                            for(Cliente cliente:Cliente.getArregloC()){
-                            if(cedula.equals(cliente.getCedula())){
-                            c=cliente;
-                            }
-                            else{
-                                System.out.println("Cedula no esta en la lista de cliente");
-                            c=null;}
+                            Cliente c = new Cliente();
+                            for (Cliente cliente : Cliente.getArregloC()) {
+                                if (cedula.equals(cliente.getCedula())) {
+                                    c = cliente;
+                                } else {
+                                    System.out.println("Cedula no esta en la lista de cliente");
+                                    c = null;
+                                }
                             }
                             System.out.print("Ingrese la cedula del empleado: ");
                             String cedulaE = sc.nextLine();
-                            Empleado e=new Empleado();
-                            for(Empleado empleado:Empleado.getEmpleados()){
-                            if(cedula.equals(empleado.getCedula())){
-                            e=empleado;
-                            }
-                            else{
-                                System.out.print("Cedula no esta en la lista de Empleados");
-                            e=null;}
+                            Empleado e = new Empleado();
+                            for (Empleado empleado : Empleado.getEmpleados()) {
+                                if (cedula.equals(empleado.getCedula())) {
+                                    e = empleado;
+                                } else {
+                                    System.out.println("Cedula no esta en la lista de Empleados");
+                                    e = null;
+                                }
                             }
                             System.out.print("Ingrese el servicio: ");
                             String servicio = sc.nextLine();
-                            Servicio s=new Servicio();
-                            for(Servicio servi : Servicio.getServicios() ){
-                            if(((servicio.substring(0, 1).toUpperCase() + servicio.substring(1)).equals(servi.getNombreServicio()))||(servicio.toLowerCase().equals(servi.getNombreServicio()))||(servicio.toUpperCase().equals(servi.getNombreServicio()))){
-                             s=servi;   
+                            Servicio s = new Servicio();
+                            for (Servicio servi : Servicio.getServicios()) {
+                                if ( (servicio.toLowerCase().equals(servi.getNombreServicio())) || (servicio.toUpperCase().equals(servi.getNombreServicio()))) {
+                                    s = servi;
+                                } else {
+                                    System.out.println("Servicio no disponible en el Consultorio ");
+                                    
+                                }
                             }
-                            else{
-                                System.out.println("Servicio no disponible en el Consultorio ");
-                            s=null;}}
                             Cita.crearCita(fecha, hora, c, s, e, 0.0);
-                            System.out.println(" ");
-                        }break;
+                            System.out.println("Cita Agregada");
+                        }
+                        break;
                         /*Si la opcion es 2 pedira la cedula del cliente para elimar la cita*/
-                        case 2:{
+                        case 2: {
                             System.out.print("Ingrese la cedula del Cliente: ");
                             String cedula = sc.nextLine();
-                            Cita c=new Cita();
+                            Cita c = new Cita();
                             c.eliminarCita(cedula);
-                        }break;
+                        }
+                        break;
                         /*Si la opcion es 3 mostrara las citas en la fecha ingresada por el usuario*/
-                        case 3:{
+                        case 3: {
                             System.out.print("Ingrese la fecha a consultar: ");
                             String fecha = sc.nextLine();
-                            for(Cita citaC: Cita.getCita()){
-                            if(fecha.equals(citaC.getFecha()))
-                            citaC.consultarCitaPorFecha(fecha);}
-                    }
-                    break;
-                }}break;//Muestra al usuario el submenu de Cita;
-                case 5: {
-                    
-                      System.out.println("1.Registar Atencion\n" +"2.Consultar Atencion" );
-                    int in= sc.nextInt();
-                    sc.nextLine();
-                    switch(in){
-                        case 1:{
-                            System.out.println("Ingrse la cedula del Cliente ");
-                              String cedulaC= sc.nextLine();
-                          System.out.println("Ingrese fecha de la Cita");
-                          String fecha = sc.nextLine();
-                          Cita citaC=new Cita();
-                          System.out.println("Ingrese cedula de empleado");
-                          String cedulaE= sc.nextLine();
-                          Servicio servicio=new Servicio();
-                          Empleado empleado=new Empleado();
-                          for(Cita cita:Cita.getCita()){
-if((cedulaC.equals(cita.getCliente().getCedula()))&&(cedulaE.equals(cita.getEmpleado().getCedula()))&&(fecha.equals(cita.getFecha()))){
-citaC= cita;                              empleado=cita.getEmpleado();
-servicio=cita.getServicio();
-                            }
-                            else if(cedulaE.equals(cita.getEmpleado())){
-citaC= cita;                               empleado=cita.getEmpleado();
-servicio=cita.getServicio();                           
-                            }
-                                                       }
-                      System.out.println("Ingrese duracion de la cita");
-                          int duracion = sc.nextInt();
-                          sc.nextLine();
-                        Atencion atencion = new Atencion(citaC);
-                          atencion.registrarAtencion(cedulaC,citaC,servicio,duracion,empleado);
-                      break;  }
-                      case 2: {
-                        System.out.println("Para consultar la atencion ingrese la cedula del cliente , cedula de empleado o la fecha");
-                        String ingresoD= sc.nextLine();
-                        Atencion.consultarAtencion(ingresoD);
+                            Cita c=new Cita();
+                            c.consultarCitaPorFecha(fecha);}break;
+                            
                         
-                      break;}
+                    }}
+                
+                break;//Muestra al usuario el submenu de Cita;
+                case 5: {
+
+                    System.out.println("1.Registar Atencion\n" + "2.Consultar Atencion");
+                    int in = sc.nextInt();
+                    sc.nextLine();
+                    switch (in) {
+                        case 1: {
+                            System.out.println("Ingrse la cedula del Cliente ");
+                            String cedulaC = sc.nextLine();
+                            System.out.println("Ingrese fecha de la Cita");
+                            String fecha = sc.nextLine();
+                            Cita citaC = new Cita();
+                            System.out.println("Ingrese cedula de empleado");
+                            String cedulaE = sc.nextLine();
+                            Servicio servicio = new Servicio();
+                            Empleado empleado = new Empleado();
+                            for (Cita cita : Cita.getCita()) {
+                                if ((cedulaC.equals(cita.getCliente().getCedula())) && (cedulaE.equals(cita.getEmpleado().getCedula())) && (fecha.equals(cita.getFecha()))) {
+                                    citaC = cita;
+                                    empleado = cita.getEmpleado();
+                                    servicio = cita.getServicio();
+                                } else if (cedulaE.equals(cita.getEmpleado())) {
+                                    citaC = cita;
+                                    empleado = cita.getEmpleado();
+                                    servicio = cita.getServicio();
+                                }
+                            }
+                            System.out.println("Ingrese duracion de la cita");
+                            int duracion = sc.nextInt();
+                            sc.nextLine();
+                            Atencion atencion = new Atencion(citaC);
+                            atencion.registrarAtencion(cedulaC, citaC, servicio, duracion, empleado);
+                            System.out.println("Atencion Registrada");
+                            break;
+                        }
+                        case 2: {
+                            //System.out.println("Para consultar la atencion ingrese la cedula del cliente , cedula de empleado o la fecha");
+                            //String ingresoD= sc.nextLine();
+                            Atencion.consultarAtencion();
+
+                            break;
+                        }
                     }
-                    
-                    break;}
-                    
-                    //Muesta al usuario el submenu de Atencion
+
+                    break;
+                }
+
+                //Muesta al usuario el submenu de Atencion
                 case 6: {
                     System.out.println("Saliendo del Menú");
                     break;
                 }//Hace que el usuario salga del programa
-                
+
             }
-        } while (ingreso != 6);
+
+        } while (ingreso
+                != 6);
     }
 
     public static void main(String[] args) {
         //Servicio s =new Servicio();
-        Empleado e = new Empleado("Miguel", "Ochoa", "12032884843", "098687454", "jose@hotmail.es","Inactivo");
-         Cliente c1 = new Cliente("Maria", "Perez", "09998225553", "0996955651", "mariaperez@hotmail.com", "Papá de Maria");
-     Cliente c2 = new Cliente("Pedro", "Coronel", "0909951111", "0984786321", "pedrocoronel@hotmail.com", "Mamá de Pedro");
-    //Se crean 3 servicios
-     Servicio s1 = new Servicio("Terapcia de Lenguaje", "Activo", "Tipo A", 1, 23.0f);
-     Servicio s2 = new Servicio("Terapia de Colores", "Activo", "Tipo A", 2, 22.5f);
-     Servicio s3 = new Servicio("Terapia Visual", "Activo", "Tipo B", 3, 20.0f);
-     Cita cita1 = new Cita("15/07/2022", "16:00", c1, s1, e, 0);
-     Cita cita2 = new Cita("16/07/2022", "15:00", c2, s2, e, 0);
+        Empleado e = new Empleado("Miguel", "Ochoa", "12032884843", "098687454", "jose@hotmail.es", "Inactivo");
+        Cliente c1 = new Cliente("Maria", "Perez", "09998225553", "0996955651", "mariaperez@hotmail.com", "Papá de Maria");
+        Cliente c2 = new Cliente("Pedro", "Coronel", "0909951111", "0984786321", "pedrocoronel@hotmail.com", "Mamá de Pedro");
+        //Se crean 3 servicios
+        Servicio s1 = new Servicio("terapcia de lenguaje", "Activo", 1, 23.0f);
+        Servicio s2 = new Servicio("Terapia de Colores", "Activo", 2, 22.5f);
+        Servicio s3 = new Servicio("Terapia Visual", "Activo", 3, 20.0f);
+        Cita cita1 = new Cita("15/07/2022", "16:00", c1, s1, e, 0);
+        Cita cita2 = new Cita("16/07/2022", "15:00", c2, s2, e, 0);
+        System.out.println(Cita.getCita().size());
         Cita.crearCita("15/07/2022", "16:00", c1, s1, e, 0);
-        //Cliente c1 = new Cliente("Jose", "Cordova", "1203296213", "0986808147", "jose@hotmail.com", "Madre");
-        //Empleado e = new Empleado("Miguel", "Ochoa", "12032884843", "098687454", "jose@hotmail.es","Inactivo");
+        System.out.println(Cita.getCita().size());
+        Cita.crearCita("16/07/2022", "16:00", c1, s1, e, 0);
         //Cita.crearCita("15-07-2022","15:25",c1,s,e);
         Cliente.agregarCliente(c1);
+        Cliente.agregarCliente(c2);
         Sistema s = new Sistema();
         Empleado.agregarEmpleado(e);
-        
+        Servicio.agregarServicio(s1);
+        Servicio.agregarServicio(s2);
+        Servicio.agregarServicio(s3);
+
         s.inicializarSistema();
-        
+
     }
 }
-

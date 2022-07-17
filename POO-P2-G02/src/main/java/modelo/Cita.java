@@ -93,43 +93,56 @@ public class Cita {
     }
 
     public static void crearCita(String f, String h, Cliente c, Servicio s, Empleado e, double d) {
+        int valor = 0;
         if (cita.size() == 0) {
             cita.add(new Cita(f, h, c, s, e, 0));
+            
         }// si el arreglo no tiene citas agregara sin problemas la cita
-        else {
+        else if(cita.size()>0) {
             for (Cita citaR : cita) {//la varibale de la instancia for citaR que hace referencia a que va a recorrer el arreglo cita
-                boolean comprobacion = citaR.getEmpleado().equals(e) && citaR.getFecha().equals(f) && citaR.getHoraInicio().equals(h);
-                if (comprobacion) {
-                    System.out.println("Creacion invalida el empleador ya tiene cita designada a esta fecha y hora");
+                //boolean comprobacion = (citaR.getEmpleado().equals(e)) && (citaR.getFecha().equals(f)) && (citaR.getHoraInicio().equals(h));
+                if ((citaR.getEmpleado().equals(e)) && (citaR.getFecha().equals(f)) && (citaR.getHoraInicio().equals(h))) {
+                    System.out.println("Creacion invalida el empleador ya tiene cita designada a esta fecha y hora");    
                 } else {
-                    cita.add(new Cita(f, h, c, s, e, 0));
+                    valor =1;
                 }
             }
-        }/*Comprueba si el empleado tiene cita en la fecha designada si la tiene muestra 
+        }
+    if (valor ==0){
+    cita.add(new Cita());}
+    else if (valor==1){
+    cita.add(new Cita(f,h,c,s,e,d));}
+    }/*Comprueba si el empleado tiene cita en la fecha designada si la tiene muestra 
         que en esa fecha y hora ya hay una cita designada y en caso de no tener crea la cita*/
-    }
+    
 
     public void eliminarCita(String cedula) {
-        for (Cita citaR : cita) {
-            if (citaR.getCliente().getCedula().equals(cedula)) {
-                System.out.println(citaR);
-            }
-        }//recorre cita para ver las citas de la cedula ingresada
+        //recorre cita para ver las citas de la cedula ingresada
+        for(Cita citaR: Cita.getCita()){
+        if((citaR.getCliente().getCedula()).equals(cedula)){
+            System.out.println(citaR);
+        }}
         String salida = "SI";
         do {
+            
             Scanner sc = new Scanner(System.in);
-            System.out.println("Ingrese cita a eliminar");
-            String ingreso = sc.nextLine();
-            cita.remove(cita.indexOf(ingreso));
+            System.out.println("Ingrese fecha de cita a eliminar");
+            String ingresoF = sc.nextLine();
+            System.out.println("Ingrese hora de cita a eliminar");
+            String ingresoH = sc.nextLine();
+            for (Cita citaR : cita){ 
+            if (((citaR.getCliente().getCedula()).equals(cedula))&&(ingresoF.equals(citaR.getFecha())) &&(ingresoH.equals(citaR.getHoraInicio()))) {
+                cita.remove(citaR);
+            }}
             System.out.println("Desea seguir eliminando citas");
             String ingresoS = sc.nextLine();
-            if (ingreso.toUpperCase().equals("SI")) {
+            if (ingresoS.toUpperCase().equals("NO")) {
                 salida = "NO";
             }
         } while (salida.equals("SI"));
     }
 
-    public void consultarCitaPorFecha(String fecha) {
+    public static void consultarCitaPorFecha(String fecha) {
         for (Cita citaR : cita) {
             if (citaR.getFecha().equals(fecha)) {
                 System.out.println(citaR);
