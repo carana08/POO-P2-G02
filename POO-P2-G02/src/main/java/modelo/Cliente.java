@@ -42,7 +42,7 @@ public class Cliente extends Persona {
     public void editarCliente() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese el numero de lo que va a editar");
-        System.out.println("1. nombre \n" + "2.apellido \n " + "3. telefono\n" + "4. email\n");
+        System.out.println("1. nombre \n" + "2. apellido \n" + "3. telefono\n" + "4. email\n");
         int i = sc.nextInt();
         sc.nextLine();
         switch (i) {
@@ -57,15 +57,18 @@ public class Cliente extends Persona {
                 this.setApellido(a);
                 break;
             case 3:
-                System.out.println("Ingrese el email a editar");
-                String email = sc.nextLine();
-                this.setEmail(email);
-                break;
-            case 4:
                 System.out.println("Ingrese el teléfono a editar");
                 String t = sc.nextLine();
                 this.setTelefono(t);
                 break;
+                
+            case 4:
+                
+                System.out.println("Ingrese el email a editar");
+                String email = sc.nextLine();
+                this.setEmail(email);
+                break;
+                
         }
     }// se crea el metodo editar cliente para editar su informacion 
 

@@ -31,8 +31,7 @@ public class Sistema {
                 case 1: {
                     System.out.println("Servicios Ofrecidos en Therapy: ");
                     for (Servicio s : Servicio.getServicios()) {
-                        System.out.println("Servicios");
-                        System.out.println(s);
+                        System.out.println(s);//quitar linea de sout("Servicios")
                     }
                     System.out.println("Ingrese la opcion de lo que quiere hacer: \n 1. Agregar Servicio \n 2.Editar Servicio \n 3.Eliminar Servicio \n 4.Salir al Menú principal");
                     int ingresoS = sc.nextInt();
@@ -58,12 +57,12 @@ public class Sistema {
                             System.out.println("Ingrese nombre del servicio");
                             String nombreS = sc.nextLine();
                             Servicio servicio = new Servicio();
-                            for (Servicio servicioR : Servicio.getServicios()) {
+                            for (Servicio servicioR : Servicio.getServicios()) { 
                                 if (nombreS.equals(servicioR.getNombreServicio())) {
                                     servicio = servicioR;
                                 }
-                                servicio.editarServicio(servicio);
-                            }
+                                
+                            }servicio.editarServicio(servicio);
                             break;
                         }
                         case 3: {
@@ -73,9 +72,9 @@ public class Sistema {
                             for (Servicio servicioR : Servicio.getServicios()) {
                                 if (nombreS.equals(servicioR.getNombreServicio())) {
                                     servicio = servicioR;
-                                }
-                                servicio.editarServicio(servicio);
+                                }servicio.eliminarServicio(servicio);
                                 System.out.println("Eliminando servicio");
+                                
                             }
                             break;
                         }
@@ -186,8 +185,8 @@ public class Sistema {
                                 if (cedulaC.equals(clienteR.getCedula())) {
                                     cliente = clienteR;
                                 }
-                                cliente.editarCliente();
-                            }
+                                
+                            }cliente.editarCliente();
                             break;
                         }
                         
@@ -209,31 +208,43 @@ public class Sistema {
                             /*Si la opcion es 1 se pedira el ingreso de los atributos necesarios 
                             para poder crear la cita en el caso de cliente y empleado
                             se pedira el ingreso de la cedula para verficarla en el sistema*/
-                            System.out.print("Ingrese la fecha de la cita: ");
+                            System.out.print("Ingrese la fecha de la cita con el formato dd/mm/aaaa: ");
                             String fecha = sc.nextLine();
-                            System.out.print("Ingrese la hora de la cita: ");
+                            System.out.print("Ingrese la hora de la cita hh:mm: ");
                             String hora = sc.nextLine();
                             System.out.print("Ingrese la cedula del cliente: ");
                             String cedula = sc.nextLine();
                             Cliente c = new Cliente();
+                            int agregado = 0;
+                            int agregado2=0;
+                            String m1 = "";
+                            String m2 = "";
                             for (Cliente cliente : Cliente.getArregloC()) {
                                 if (cedula.equals(cliente.getCedula())) {
                                     c = cliente;
-                                } else {
-                                    System.out.println("Cedula no esta en la lista de cliente");
+                                    agregado=1;
+                                    
                                 }
-                            }
+                            }if(agregado==0){
+                                m1= "Cedula no esta en la lista de cliente";
+                            System.out.println(m1);}
+                            if(!(m1.equals("Cedula no esta en la lista de cliente"))){
                             System.out.print("Ingrese la cedula del empleado: ");
+                            
                             String cedulaE = sc.nextLine();
                             Empleado e = new Empleado();
+                            int igualdad = 0;
                             for (Empleado empleado : Empleado.getEmpleados()) {
-                                if (cedula.equals(empleado.getCedula())) {
+                                if (cedulaE.equals(empleado.getCedula())) {
                                     e = empleado;
-                                } else {
-                                    System.out.println("Cedula no esta en la lista de Empleados");
-
-                                }
+                                    agregado2=1;
+                                } 
+                            }if(agregado2==0){
+                            m2="Cedula no esta en la lista de Empleados";
+                                System.out.println(m2);
                             }
+                            }
+                            if(!(m1.equals("Cedula no esta en la lista de cliente"))&&!(m2.equals("Cedula no esta en la lista de Empleados"))){
                             System.out.print("Ingrese el servicio: ");
                             String servicio = sc.nextLine();
                             Servicio s = new Servicio();
@@ -255,7 +266,7 @@ public class Sistema {
                             Cita cita = new Cita(fecha, hora, c, s, e, 0.0);
                             cita.crearCita(cita);
                             System.out.println("Cita Agregada");
-                        }
+                        }}
                         break;
                         /*Si la opcion es 2 pedira la cedula del cliente para elimar la cita*/
                         case 2: {
@@ -267,7 +278,7 @@ public class Sistema {
                         break;
                         /*Si la opcion es 3 mostrara las citas en la fecha ingresada por el usuario*/
                         case 3: {
-                            System.out.print("Ingrese la fecha a consultar: ");
+                            System.out.print("Ingrese la fecha a consultar dd/mm/aaaa: ");
                             String fecha = sc.nextLine();
                             Cita.consultarCitaPorFecha(fecha);}break;
                             

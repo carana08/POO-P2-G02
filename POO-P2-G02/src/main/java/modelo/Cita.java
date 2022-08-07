@@ -137,10 +137,10 @@ public class Cita {
     }
 
     public static void consultarCitaPorFecha(String fecha) {  
-        System.out.println(Cita.getCita());
         for(Cita citaR:Cita.getCita()){
+            if(fecha.equals(citaR.getFecha())){
               System.out.println(citaR);  }
-        }
+        }}
    
     //Sobreescritura metodo toString
     @Override

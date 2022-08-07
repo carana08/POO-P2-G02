@@ -66,31 +66,41 @@ public class Servicio {
     }
     //Método editarServicio: Recibe un servicio y los parametros para cambiarlo
     public void editarServicio(Servicio s){
-        System.out.println("Ingrese el número de la opción que desea editar: \n 1.ESTADO \n 2.TIPO \n 3.DURACION \n 4.PRECIO");
+        System.out.println("Ingrese el número de la opción que desea editar: \n 1.NOMBRE \n 2.ESTADO \n 3.DURACION \n 4.PRECIO");
         int i = sc.nextInt();
         sc.nextLine();
         switch (i){
-            case 1:
+            case 1:{
                 System.out.println("Ingrese el nuevo nombre: ");
                 String n = sc.nextLine();
                 s.setNombreServicio(n);
-                break;
-            case 2:
+                break;}
+            case 2:{
                 System.out.println("Ingrese nuevo estado: ");
                 String es = sc.nextLine();
                 s.setEstado(es);
-                break;
+                break;}
             
-            case 3:
+            case 3:{
                 System.out.println("Ingrese nueva duración: ");
                 int d = sc.nextInt();
                 sc.nextLine();
                 s.setDuracionServicio(d);
-                break;
-        }
+                break;}
+            case 4:{
+                System.out.println("Ingrese nuevo precio");
+                double p = sc.nextDouble();
+                sc.nextLine();
+                s.setPrecio(p);
+                break;}
+        } 
     }
     //Método eliminarServicio: Recibe un servicio y cambia su estado
     public void eliminarServicio(Servicio s){
         s.setEstado("Inactivo");
     }
+    @Override
+    public String toString(){
+        return "Servicio: "+nombreServicio+", Estado: "+estado+", Duracion: "+duracionServicio+", Precio: "+precio;
+    }//agregar toString
 }
