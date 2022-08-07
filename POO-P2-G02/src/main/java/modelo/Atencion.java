@@ -39,17 +39,41 @@ public class Atencion {
     //Sobrecarga del método consultarAtencion
     public static void consultarAtencion(){
         Scanner sc= new Scanner(System.in);
-    System.out.println("Ingrese uno de los siguientes datos: \nCEDULA CLIENTE \nCEDULA EMPLEADO \nFECHA");
-        String s=sc.nextLine();
+        System.out.println("Ingrese como la opcion por la que va a realizar la consulta: \n1.CEDULA CLIENTE \n2.CEDULA EMPLEADO \n3.FECHA");
+        int ing = sc.nextInt();
+        sc.nextLine();
         Atencion at= new Atencion();
-        for (Atencion a: atenciones){
+        switch(ing){
+            case 1:{
+                System.out.print("Ingrese cedula del cliente: ");
+                String s=sc.nextLine();
+                for (Atencion a: atenciones){
             if (a.getCita().getCliente().getCedula().equals(s)){
                 at=a;
-            } else if (a.getCita().getEmpleado().getCedula().equals(s)){
-                at=a;
-            } else if (a.getCita().getFecha().equals(s)){
-                at=a;
             }
+            }break; 
+            }
+            case 2:{
+                System.out.print("Ingrese cedula del Empleado: ");
+                String s=sc.nextLine();
+                for (Atencion a: atenciones){
+                    if (a.getCita().getEmpleado().getCedula().equals(s)){
+                at=a;     
+            } 
+            }break;
+        }
+            case 3:{
+                 System.out.print("Ingrese la fecha con el formato dd/mm/aaaa: ");
+                String s=sc.nextLine();
+            for (Atencion a: atenciones){
+                if (a.getCita().getFecha().equals(s)){
+                at=a;
+            } 
+            }break;
+            } 
+    
+        
+        
         }System.out.println(at);
     }
     //Sobreescritua del metodo toString
