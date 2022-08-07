@@ -274,6 +274,7 @@ public class Sistema {
                             String cedula = sc.nextLine();
                             //Cita c = new Cita();
                             Cita.eliminarCita(cedula);
+                            System.out.println("Lista de citas actualizada con la cita Eliminada\n"+Cita.getCita());
                         }
                         break;
                         /*Si la opcion es 3 mostrara las citas en la fecha ingresada por el usuario*/
