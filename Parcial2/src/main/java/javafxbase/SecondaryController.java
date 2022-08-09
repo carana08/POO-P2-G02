@@ -1,4 +1,4 @@
-package com.mycompany.parcial2;
+package javafxbase;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
