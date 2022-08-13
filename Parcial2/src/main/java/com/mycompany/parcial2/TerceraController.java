@@ -118,7 +118,7 @@ public class TerceraController implements Initializable{
            
            stage5.setOnCloseRequest(e->controlador.closeWindows());
            
-           Stage myStage5 = (Stage) this.clientes.getScene().getWindow();
+           Stage myStage5 = (Stage) this.atenciones.getScene().getWindow();
            
            myStage5.close();
            
