@@ -8,6 +8,12 @@ package modelo;
  *
  * @author César
  */
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -80,5 +86,47 @@ public class Cliente extends Persona {
     public String toString() {
         return "CLIENTE"+super.toString() + "\nDatos representante: " + datosRepresentante;
     }
-
+    //Nuevos métodos
+    public static void crearArchivoClientes(){
+        try(ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constantes.rutaClientes))){
+            ArrayList<Cita> listaRegistros = new ArrayList<>();
+            escritor.writeObject(listaRegistros);
+            escritor.flush();
+            
+            
+        }catch(IOException e){
+            e.printStackTrace();}
+        catch(Exception e){
+            System.out.println("-------Excepcion general--------");
+        }
+    
+    }
+    
+    public static ArrayList<Cliente> cargarCliente(){
+        ArrayList<Cliente> listaRetorno  = new ArrayList<>();
+        
+        try(ObjectInputStream lector = new ObjectInputStream(new FileInputStream(Constantes.rutaClientes))) {
+            listaRetorno = (ArrayList<Cliente>)lector.readObject();   
+        }
+        catch(FileNotFoundException e){
+            System.out.println("El archivo no fue encontrado");}
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }  catch (Exception ex) {
+            System.out.println("Error " + ex.getMessage());
+        } 
+        return listaRetorno;
+    }
+    public static void registrarCliente(Cliente c){
+        ArrayList<Cliente>listaActualizada = cargarCliente();
+        listaActualizada.add(c);
+        try(ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constantes.rutaClientes))) {
+            escritor.writeObject(listaActualizada);
+        }
+        
+        catch (IOException ex){
+            ex.printStackTrace();
+        }
+    
+    }
 }

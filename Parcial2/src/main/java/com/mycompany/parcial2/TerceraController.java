@@ -18,6 +18,9 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import modelo.Empleado;
 import modelo.Servicio;
+import modelo.Cliente;
+import modelo.Cita;
+import modelo.Atencion;
 /**
  * FXML Controller class
  *
@@ -76,10 +79,52 @@ public class TerceraController implements Initializable{
 
     @FXML
     private void cita(ActionEvent event) {
+        try {
+            FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/sexto.fxml"));
+            Parent root3 = loader3.load();
+            SextoController controlador3  = loader3.getController();
+            Scene scene3 = new Scene(root3);
+            Stage stage3 = new Stage();
+
+            stage3.setScene(scene3);
+            stage3.show();
+           
+            stage3.setOnCloseRequest(e->controlador3.closeWindows());
+            Stage myStage3 = (Stage) this.citas.getScene().getWindow();
+            myStage3.close();
+           
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @FXML
     private void atencion(ActionEvent event) {
+        try {
+            FXMLLoader loader5 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/septimo.fxml"));
+            
+            Parent root5 = loader5.load();
+            
+           CuartoController controlador  = loader5.getController();
+           
+           Scene scene5 = new Scene(root5);
+           Stage stage5 = new Stage();
+           
+           
+            
+           stage5.setScene(scene5);
+         
+           stage5.show();
+           
+           stage5.setOnCloseRequest(e->controlador.closeWindows());
+           
+           Stage myStage5 = (Stage) this.clientes.getScene().getWindow();
+           
+           myStage5.close();
+           
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } 
     }
 
     @FXML
@@ -103,6 +148,31 @@ public class TerceraController implements Initializable{
 
     @FXML
     private void cliente(ActionEvent event) {
+        try {
+            FXMLLoader loader4 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/septimo.fxml"));
+            
+            Parent root4 = loader4.load();
+            
+           CuartoController controlador  = loader4.getController();
+           
+           Scene scene4 = new Scene(root4);
+           Stage stage4 = new Stage();
+           
+           
+            
+           stage4.setScene(scene4);
+         
+           stage4.show();
+           
+           stage4.setOnCloseRequest(e->controlador.closeWindows());
+           
+           Stage myStage4 = (Stage) this.clientes.getScene().getWindow();
+           
+           myStage4.close();
+           
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } 
     }
 
     @FXML

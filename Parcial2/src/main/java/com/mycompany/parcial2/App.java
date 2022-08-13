@@ -10,6 +10,9 @@ import java.io.IOException;
 import modelo.Empleado;
 import modelo.Persona;
 import modelo.Servicio;
+import modelo.Cita;
+import modelo.Cliente;
+import modelo.Atencion;
 
 /**
  * JavaFX App
@@ -23,9 +26,21 @@ public class App extends Application {
         Persona.crearArchivoPersona();
         Empleado.crearArchivoEmpleado();
         Servicio.crearArchivoServicios();
-        Servicio.registrarServicio(new Servicio("terapia de lenguaje", "Activo", 1, 23.0f));
-        Empleado.registrarEmpleado(new Empleado("Miguel", "Ochoa", "12032884843", "098687454", "jose@hotmail.es", "Inactivo"));
-        Empleado.registrarEmpleado(new Empleado("Hector", "Ortega", "1203296213", "098688754", "Lot@hotmail.es", "Activo"));
+        Cita.crearArchivoCitas();
+        //Empleados, Servicios, Clientes y Atenciones
+        Servicio s = new Servicio("terapia de lenguaje", "Activo", 1, 23.0f);
+        Empleado e1 = new Empleado("Miguel", "Ochoa", "12032884843", "098687454", "jose@hotmail.es", "Inactivo");
+        Empleado e2 = new Empleado("Hector", "Ortega", "1203296213", "098688754", "Lot@hotmail.es", "Activo");
+        Cliente c1 = new Cliente("Ana", "Suarez", "0909202584", "0999999999", "anasuarez@gmail.com", "Clarisa");
+        Cita c = new Cita(c1, e1 ,s, "05/07/2022", 5, "16:00","18:00");
+        Atencion a = new Atencion(c);
+        
+        Servicio.registrarServicio(s);
+        Empleado.registrarEmpleado(e1);
+        Empleado.registrarEmpleado(e2);
+        Cliente.registrarCliente(c1);
+        Cita.registrarCita(c);
+        Atencion.registrarAtencion(a);
         scene = new Scene(loadFXML("tercera"), 640, 480);
         stage.setScene(scene);
         stage.show();

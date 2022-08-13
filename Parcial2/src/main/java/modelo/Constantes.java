@@ -12,4 +12,7 @@ public class Constantes {
     public static final String rutaServicios = "archivos/servicios.txt";
     public static final String rutaEmpleado = "archivos/empleado.txt";
     public static final String rutaPersona = "archivos/persona.txt";
+    public static final String rutaCitas = "archivos/citas.txt";
+    public static final String rutaClientes = "archivos/clientes.txt";
+    public static final String rutaAtenciones = "archivos/atenciones.txt";
 }

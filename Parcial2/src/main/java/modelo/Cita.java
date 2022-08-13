@@ -8,6 +8,12 @@ package modelo;
  *
  * @author César
  */
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -21,6 +27,9 @@ public class Cita {
     double duracionR;
     private String horaInicio;
     private String horaFin;//se crean las variables de la clase cita
+    
+    //Scanner
+    transient Scanner sc = new Scanner(System.in);
 
     public void setFecha(String f) {
         fecha = f;
@@ -85,9 +94,10 @@ public class Cita {
     //getters y setters de las variables definidas
     public Cita(){}
 
-    public Cita(String f, String h, Cliente c, Servicio s, Empleado e, double duracionR) {
+    public Cita(Cliente c, Empleado e, Servicio s, String f, double duracionR, String h, String hf) {
         fecha = f;
         horaInicio = h;
+        horaFin = hf;
         cliente = c;
         servicio = s;
         empleado = e;
@@ -146,6 +156,50 @@ public class Cita {
     @Override
     public String toString(){
         return "Fecha cita: " +this.getFecha() + "\nHora inicio: " + this.getHoraInicio() +" \nDatos del Cliente: " + this.getCliente().toString() + "\nSERVICIO:" + this.getServicio().toString() +"\nDatos del Empleado:" + this.getEmpleado().toString() + "\nDuracion de la cita en horas:" + this.getDuracionR();
+    }
+    
+    //Nuevos métodos
+    public static void crearArchivoCitas(){
+        try(ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constantes.rutaCitas))){
+            ArrayList<Cita> listaRegistros = new ArrayList<>();
+            escritor.writeObject(listaRegistros);
+            escritor.flush();
+            
+            
+        }catch(IOException e){
+            e.printStackTrace();}
+        catch(Exception e){
+            System.out.println("-------Excepcion general--------");
+        }
+    
+    }
+    
+    public static ArrayList<Cita> cargarCita(){
+        ArrayList<Cita> listaRetorno  = new ArrayList<>();
+        
+        try(ObjectInputStream lector = new ObjectInputStream(new FileInputStream(Constantes.rutaCitas))) {
+            listaRetorno = (ArrayList<Cita>)lector.readObject();   
+        }
+        catch(FileNotFoundException e){
+            System.out.println("El archivo no fue encontrado");}
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }  catch (Exception ex) {
+            System.out.println("Error " + ex.getMessage());
+        } 
+        return listaRetorno;
+    }
+    public static void registrarCita(Cita c){
+        ArrayList<Cita>listaActualizada = cargarCita();
+        listaActualizada.add(c);
+        try(ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constantes.rutaCitas))) {
+            escritor.writeObject(listaActualizada);
+        }
+        
+        catch (IOException ex){
+            ex.printStackTrace();
+        }
+    
     }
 
 }

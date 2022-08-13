@@ -3,6 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
@@ -32,10 +38,11 @@ public class Atencion {
     public Atencion(Cita cita){
         this.cita = cita;
     }
-    //Metodo registrarAtencion
+    /*Antiguo Metodo registrarAtencion
     public void registrarAtencion(Atencion a){
         atenciones.add(a);
-    }
+    }*/
+    
     //Sobrecarga del método consultarAtencion
     public static void consultarAtencion(){
         Scanner sc= new Scanner(System.in);
@@ -80,5 +87,48 @@ public class Atencion {
     @Override
     public String toString(){
         return "Atención: " + cita.toString();
+    }
+    //Nuevos métodos
+    public static void crearArchivoAtenciones(){
+        try(ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constantes.rutaAtenciones))){
+            ArrayList<Atencion> listaRegistros = new ArrayList<>();
+            escritor.writeObject(listaRegistros);
+            escritor.flush();
+            
+            
+        }catch(IOException e){
+            e.printStackTrace();}
+        catch(Exception e){
+            System.out.println("-------Excepcion general--------");
+        }
+    
+    }
+    
+    public static ArrayList<Atencion> cargarAtencion(){
+        ArrayList<Atencion> listaRetorno  = new ArrayList<>();
+        
+        try(ObjectInputStream lector = new ObjectInputStream(new FileInputStream(Constantes.rutaAtenciones))) {
+            listaRetorno = (ArrayList<Atencion>)lector.readObject();   
+        }
+        catch(FileNotFoundException e){
+            System.out.println("El archivo no fue encontrado");}
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }  catch (Exception ex) {
+            System.out.println("Error " + ex.getMessage());
+        } 
+        return listaRetorno;
+    }
+    public static void registrarAtencion(Atencion a){
+        ArrayList<Atencion>listaActualizada = cargarAtencion();
+        listaActualizada.add(a);
+        try(ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constantes.rutaAtenciones))) {
+            escritor.writeObject(listaActualizada);
+        }
+        
+        catch (IOException ex){
+            ex.printStackTrace();
+        }
+    
     }
 }
