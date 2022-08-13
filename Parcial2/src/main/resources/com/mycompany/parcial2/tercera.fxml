@@ -3,13 +3,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="contenido" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.p2prueba.TerceraController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.parcial2.TerceraController">
    <children>
-      <Button fx:id="servicios" layoutX="127.0" layoutY="97.0" mnemonicParsing="false" onAction="#servicio" text="Servicios" />
-      <Button fx:id="empleados" layoutX="376.0" layoutY="97.0" mnemonicParsing="false" onAction="#empleado" text="Empleados" />
-      <Button fx:id="citas" layoutX="127.0" layoutY="150.0" mnemonicParsing="false" text="Citas" />
-      <Button fx:id="clientes" layoutX="376.0" layoutY="150.0" mnemonicParsing="false" text="Clientes" />
-      <Button fx:id="atenciones" layoutX="127.0" layoutY="207.0" mnemonicParsing="false" text="Atenciones" />
-      <Button fx:id="salir" layoutX="376.0" layoutY="200.0" mnemonicParsing="false" text="Salir" />
+      <Button fx:id="servicios" layoutX="144.0" layoutY="70.0" mnemonicParsing="false" onAction="#servicio" text="Servicios" />
+      <Button fx:id="citas" layoutX="144.0" layoutY="137.0" mnemonicParsing="false" onAction="#cita" text="Citas" />
+      <Button fx:id="atenciones" layoutX="144.0" layoutY="200.0" mnemonicParsing="false" onAction="#atencion" text="Atenciones" />
+      <Button fx:id="empleados" layoutX="374.0" layoutY="70.0" mnemonicParsing="false" onAction="#empleaado" text="Empleados" />
+      <Button fx:id="clientes" layoutX="374.0" layoutY="137.0" mnemonicParsing="false" onAction="#cliente" text="Clientes" />
+      <Button fx:id="salir" layoutX="374.0" layoutY="200.0" mnemonicParsing="false" onAction="#salida" text="Salir" />
    </children>
 </Pane>

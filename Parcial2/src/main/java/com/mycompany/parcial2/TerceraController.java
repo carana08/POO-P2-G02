@@ -15,41 +15,37 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
  * @author César
  */
-public class TerceraController implements Initializable {
+public class TerceraController  {
 
 
-    @FXML
-    private Pane contenido;
     @FXML
     private Button servicios;
     @FXML
-    private Button empleados;
-    @FXML
     private Button citas;
     @FXML
-    private Button clientes;
-    @FXML
     private Button atenciones;
+    @FXML
+    private Button empleados;
+    @FXML
+    private Button clientes;
     @FXML
     private Button salir;
     /**
      * Initializes the controller class.
      */
-    @Override
+    @FXML
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
     
     @FXML
     private void servicio(ActionEvent event) {
-        
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/cuarto.fxml"));
             
@@ -75,25 +71,26 @@ public class TerceraController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         } 
-        
- /*       
     }
+
     @FXML
-    private void empleado(ActionEvent event){
-        try {
-        FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/com/mycompany/p2prueba/prueba.fxml"));
-        Parent root2 = loader2.load();
-        PruebaController controlador2 = loader2.getController();
-        Scene scene2 = new Scene(root2);
-        Stage stage2 = new Stage();
-        stage2.setScene(scene2);
-        stage2.show();
-        stage2.setOnCloseRequest(e->controlador2.closeWindows());
-        Stage myStage2 = (Stage) this.empleados.getScene().getWindow();
-        myStage2.close();
-        }catch (IOException ex) {
-            ex.printStackTrace();
-        } 
-     */   
+    private void cita(ActionEvent event) {
     }
+
+    @FXML
+    private void atencion(ActionEvent event) {
+    }
+
+    @FXML
+    private void empleaado(ActionEvent event) {
+    }
+
+    @FXML
+    private void cliente(ActionEvent event) {
+    }
+
+    @FXML
+    private void salida(ActionEvent event) {
+    }
+
 }
