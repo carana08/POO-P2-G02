@@ -24,8 +24,11 @@
                 <TableColumn fx:id="nombre" prefWidth="75.0" text="Nombre" />
                 <TableColumn fx:id="duracion" prefWidth="75.0" text="Duracion " />
                   <TableColumn fx:id="precio" prefWidth="75.0" text="Precio" />
-                  <TableColumn prefWidth="75.0" text="Estado" />
+                  <TableColumn fx:id="estado" prefWidth="75.0" text="Estado" />
               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
             </TableView>
          </children>
       </FlowPane>

@@ -4,11 +4,20 @@
  */
 package modelo;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  *
  * @author César
  */
-public class Persona {
+public class Persona implements Serializable{
 
     private String nombre;
     private String apellido;
@@ -68,5 +77,47 @@ public class Persona {
     @Override
     public String toString() {
        return  "\nNombre: " + this.getNombre() + " \nApellido: " + this.getApellido() + " \nCedula: " + this.getCedula() + " \nTelefono: " + this.getTelefono()+ " \nEmail: " + this.getEmail();
+    }
+    public static void crearArchivoPersona(){
+        try(ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constantes.rutaPersona))){
+            ArrayList<Persona> listaRegistros = new ArrayList<>();
+            escritor.writeObject(listaRegistros);
+            escritor.flush();
+            
+            
+        }catch(IOException e){
+            e.printStackTrace();}
+        catch(Exception e){
+            System.out.println("-------Excepcion general--------");
+        }
+    
+    }
+    
+    public static ArrayList<Persona> cargarPersona(){
+        ArrayList<Persona> listaRetorno  = new ArrayList<>();
+        
+        try(ObjectInputStream lector = new ObjectInputStream(new FileInputStream(Constantes.rutaPersona))) {
+            listaRetorno = (ArrayList<Persona>)lector.readObject();   
+        }
+        catch(FileNotFoundException e){
+            System.out.println("El archivo no fue encontrado");}
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }  catch (Exception ex) {
+            System.out.println("Error " + ex.getMessage());
+        } 
+        return listaRetorno;
+    }
+    public static void registrarPersona(Persona p){
+        ArrayList<Persona>listaActualizada = cargarPersona();
+        listaActualizada.add(p);
+        try(ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constantes.rutaPersona))) {
+            escritor.writeObject(listaActualizada);
+        }
+        
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    
     }
 }

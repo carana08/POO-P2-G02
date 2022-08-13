@@ -7,7 +7,7 @@ package com.mycompany.parcial2;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,50 +15,55 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import modelo.Servicio;
+import modelo.Empleado;
+import modelo.Persona;
 /**
  * FXML Controller class
  *
  * @author César
  */
-public class CuartoController  {
+public class QuintoController implements Initializable {
 
 
     @FXML
-    private Label servicio;
+    private TableView tvEmpleado;
     @FXML
-    private TableView tvServicios;
+    private TableColumn<Persona, String> nombre;
     @FXML
-    private TableColumn<Servicio,String> nombre;
+    private TableColumn<Persona, String> apellido;
     @FXML
-    private TableColumn<Servicio,String> duracion;
+    private TableColumn<Persona, String> cedula;
     @FXML
-    private TableColumn<Servicio,String> precio;
+    private TableColumn<Persona, String> telefono;
     @FXML
-    private Button agregarS;
+    private TableColumn<Persona, String> email;
     @FXML
-    private Button editarS;
+    private TableColumn<Empleado, String> estado;
     @FXML
-    private Button eliminarS;
+    private Button agregarE;
     @FXML
-    private TableColumn<Servicio,String> estado;
+    private Button editarE;
+    @FXML
+    private Button eliminarE;
     /**
      * Initializes the controller class.
      */
-    public void initialize() {
-       nombre.setCellValueFactory(new PropertyValueFactory<>("nombreServicio"));
-        duracion.setCellValueFactory(new PropertyValueFactory<>("duracionServicio"));
-        precio.setCellValueFactory(new PropertyValueFactory<>("precio"));
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        apellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        cedula.setCellValueFactory(new PropertyValueFactory<>("cedula"));
+        telefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+        email.setCellValueFactory(new PropertyValueFactory<>("email"));
         estado.setCellValueFactory(new PropertyValueFactory<>("estado"));
-        tvServicios.getItems().setAll(Servicio.cargarServicio());
-    }  
-
-    public void closeWindows(){
+        tvEmpleado.getItems().setAll(Empleado.cargarEmpleado());
+        // TODO
+    }
+public void closeWindows(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/tercera.fxml"));
             Parent root = loader.load();
@@ -69,12 +74,25 @@ public class CuartoController  {
            stage.setScene(scene);
            stage.show();
 
-           Stage myStage = (Stage) this.agregarS.getScene().getWindow();
+           Stage myStage = (Stage) this.agregarE.getScene().getWindow();
            myStage.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         } 
     
     }
+        // TODO    
     
+    @FXML
+    private void agregarEmp(ActionEvent event) {
+    }
+
+    @FXML
+    private void editarEmpl(ActionEvent event) {
+    }
+
+    @FXML
+    private void eliminarEmpl(ActionEvent event) {
+    }
+
 }

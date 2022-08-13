@@ -16,12 +16,14 @@ import javafx.scene.Scene;
 
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import modelo.Empleado;
+import modelo.Servicio;
 /**
  * FXML Controller class
  *
  * @author César
  */
-public class TerceraController  {
+public class TerceraController implements Initializable{
 
 
     @FXML
@@ -39,9 +41,8 @@ public class TerceraController  {
     /**
      * Initializes the controller class.
      */
-    @FXML
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
     
     @FXML
@@ -83,6 +84,21 @@ public class TerceraController  {
 
     @FXML
     private void empleaado(ActionEvent event) {
+         try {
+        FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/quinto.fxml"));
+        Parent root2 = loader2.load();
+        QuintoController controlador2 = loader2.getController();
+        Scene scene2 = new Scene(root2);
+        Stage stage2 = new Stage();
+        stage2.setScene(scene2);
+        stage2.show();
+        stage2.setOnCloseRequest(e->controlador2.closeWindows());
+        Stage myStage2 = (Stage) this.empleados.getScene().getWindow();
+        myStage2.close();
+        }catch (IOException ex) {
+            ex.printStackTrace();
+        } 
+        
     }
 
     @FXML
@@ -91,6 +107,7 @@ public class TerceraController  {
 
     @FXML
     private void salida(ActionEvent event) {
+        System.exit(0);
     }
 
 }

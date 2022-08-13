@@ -5,4 +5,5 @@ module com.mycompany.parcial2 {
 
     opens com.mycompany.parcial2 to javafx.fxml;
     exports com.mycompany.parcial2;
+    opens modelo to javafx.base;
 }

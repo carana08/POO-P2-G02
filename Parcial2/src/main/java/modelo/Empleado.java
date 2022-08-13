@@ -3,6 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,11 +17,11 @@ import java.util.Scanner;
  *
  * @author Karen
  */
-public class Empleado extends Persona{
+public class Empleado extends Persona implements Serializable{
     private String estado;
     private static ArrayList<Empleado> empleados = new ArrayList<>();
     //Scanner
-    Scanner sc = new Scanner(System.in);
+    transient Scanner sc = new Scanner(System.in);
     //Getters
     public String getEstado(){
         return estado;
@@ -81,5 +88,47 @@ public class Empleado extends Persona{
     //Sobreescritura metodo toString
     public String toString(){
         return "EMPLEADO "+super.toString()+ " \nEstado:" + this.getEstado();
+    }
+    public static void crearArchivoEmpleado(){
+        try(ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constantes.rutaEmpleado))){
+            ArrayList<Empleado> listaRegistros = new ArrayList<>();
+            escritor.writeObject(listaRegistros);
+            escritor.flush();
+            
+            
+        }catch(IOException e){
+            e.printStackTrace();}
+        catch(Exception e){
+            System.out.println("-------Excepcion general--------");
+        }
+    
+    }
+    
+    public static ArrayList<Empleado> cargarEmpleado(){
+        ArrayList<Empleado> listaRetorno  = new ArrayList<>();
+        
+        try(ObjectInputStream lector = new ObjectInputStream(new FileInputStream(Constantes.rutaEmpleado))) {
+            listaRetorno = (ArrayList<Empleado>)lector.readObject();   
+        }
+        catch(FileNotFoundException e){
+            System.out.println("El archivo no fue encontrado");}
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }  catch (Exception ex) {
+            System.out.println("Error " + ex.getMessage());
+        } 
+        return listaRetorno;
+    }
+    public static void registrarEmpleado(Empleado e){
+        ArrayList<Empleado>listaActualizada = cargarEmpleado();
+        listaActualizada.add(e);
+        try(ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constantes.rutaEmpleado))) {
+            escritor.writeObject(listaActualizada);
+        }
+        
+        catch (IOException ex){
+            ex.printStackTrace();
+        }
+    
     }
 }

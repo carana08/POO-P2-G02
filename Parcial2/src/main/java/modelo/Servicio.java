@@ -3,19 +3,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
  *
  * @author Karen
  */
-public class Servicio {
+public class Servicio implements Serializable {
     private String nombreServicio, estado;
     private int duracionServicio;
     private double precio;
     private static ArrayList<Servicio> servicios = new ArrayList<>();
     //Scanner
-    Scanner sc = new Scanner(System.in);
+    transient Scanner sc = new Scanner(System.in);
     //Getters
     public String getNombreServicio(){
         return nombreServicio;
@@ -103,4 +110,46 @@ public class Servicio {
     public String toString(){
         return "Servicio: "+nombreServicio+", Estado: "+estado+", Duracion: "+duracionServicio+", Precio: "+precio;
     }//agregar toString
+        public static void crearArchivoServicios(){
+        try(ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constantes.rutaServicios))){
+            ArrayList<Servicio> listaRegistros = new ArrayList<>();
+            escritor.writeObject(listaRegistros);
+            escritor.flush();
+            
+            
+        }catch(IOException e){
+            e.printStackTrace();}
+        catch(Exception e){
+            System.out.println("-------Excepcion general--------");
+        }
+    
+    }
+    
+    public static ArrayList<Servicio> cargarServicio(){
+        ArrayList<Servicio> listaRetorno  = new ArrayList<>();
+        
+        try(ObjectInputStream lector = new ObjectInputStream(new FileInputStream(Constantes.rutaServicios))) {
+            listaRetorno = (ArrayList<Servicio>)lector.readObject();   
+        }
+        catch(FileNotFoundException e){
+            System.out.println("El archivo no fue encontrado");}
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }  catch (Exception ex) {
+            System.out.println("Error " + ex.getMessage());
+        } 
+        return listaRetorno;
+    }
+    public static void registrarServicio(Servicio s){
+        ArrayList<Servicio>listaActualizada = cargarServicio();
+        listaActualizada.add(s);
+        try(ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constantes.rutaServicios))) {
+            escritor.writeObject(listaActualizada);
+        }
+        
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    
+    }
 }
