@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import modelo.Cita;
 import modelo.Cliente;
 import modelo.Empleado;
+import modelo.Persona;
 import modelo.Servicio;
 /**
  * FXML Controller class

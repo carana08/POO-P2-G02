@@ -9,13 +9,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
  *
  * @author Karen
  */
-public class Atencion {
+public class Atencion implements Serializable{
     //Atributos
     private Cita cita;
     private static ArrayList<Atencion> atenciones = new ArrayList<> ();

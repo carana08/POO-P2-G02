@@ -14,10 +14,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Cliente extends Persona {
+public class Cliente extends Persona implements Serializable{
 
     private static ArrayList<Cliente> arregloC = new ArrayList<Cliente>();
     private String datosRepresentante;//se crea la variable para los datos del representante

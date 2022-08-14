@@ -14,10 +14,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Cita {
+public class Cita implements Serializable{
 
     private static ArrayList<Cita> cita = new ArrayList<Cita>();
     private Cliente cliente;
