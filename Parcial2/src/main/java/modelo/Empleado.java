@@ -87,7 +87,8 @@ public class Empleado extends Persona implements Serializable{
     }
     //Sobreescritura metodo toString
     public String toString(){
-        return "EMPLEADO "+super.toString()+ " \nEstado:" + this.getEstado();
+        return this.getNombre()+" "+this.getApellido();
+        //return "EMPLEADO "+super.toString()+ " \nEstado:" + this.getEstado();
     }
     public static void crearArchivoEmpleado(){
         try(ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constantes.rutaEmpleado))){

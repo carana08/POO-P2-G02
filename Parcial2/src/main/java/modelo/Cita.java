@@ -155,7 +155,8 @@ public class Cita implements Serializable{
     //Sobreescritura metodo toString
     @Override
     public String toString(){
-        return "Fecha cita: " +this.getFecha() + "\nHora inicio: " + this.getHoraInicio() +" \nDatos del Cliente: " + this.getCliente().toString() + "\nSERVICIO:" + this.getServicio().toString() +"\nDatos del Empleado:" + this.getEmpleado().toString() + "\nDuracion de la cita en horas:" + this.getDuracionR();
+        return "Fecha cita: " +this.getFecha() + "\nHora inicio: " + this.getHoraInicio() +" \nCliente: " + this.getCliente().toString() + "\nServicio: " + this.getServicio().toString() +"\nEmpleado: " + this.getEmpleado().toString() + "\nDuracion de la cita en horas: " + this.getDuracionR();
+        //return "Fecha cita: " +this.getFecha() + "\nHora inicio: " + this.getHoraInicio() +" \nDatos del Cliente: " + this.getCliente().toString() + "\nSERVICIO:" + this.getServicio().toString() +"\nDatos del Empleado:" + this.getEmpleado().toString() + "\nDuracion de la cita en horas:" + this.getDuracionR();
     }
     
     //Nuevos métodos

@@ -108,7 +108,8 @@ public class Servicio implements Serializable {
     }
     @Override
     public String toString(){
-        return "Servicio: "+nombreServicio+", Estado: "+estado+", Duracion: "+duracionServicio+", Precio: "+precio;
+        return this.getNombreServicio();
+        //return "Servicio: "+nombreServicio+", Estado: "+estado+", Duracion: "+duracionServicio+", Precio: "+precio;
     }//agregar toString
         public static void crearArchivoServicios(){
         try(ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constantes.rutaServicios))){

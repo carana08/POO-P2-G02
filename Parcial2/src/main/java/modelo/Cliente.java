@@ -85,7 +85,8 @@ public class Cliente extends Persona implements Serializable{
 
     @Override
     public String toString() {
-        return "CLIENTE"+super.toString() + "\nDatos representante: " + datosRepresentante;
+        return this.getNombre()+" "+this.getApellido();
+        //return "CLIENTE"+super.toString() + "\nDatos representante: " + datosRepresentante;
     }
     //Nuevos métodos
     public static void crearArchivoClientes(){

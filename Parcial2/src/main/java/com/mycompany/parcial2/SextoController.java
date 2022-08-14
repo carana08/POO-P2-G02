@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Cita;
 import modelo.Cliente;
@@ -103,4 +104,28 @@ public void closeWindows(){
         } 
     
     }
+
+    @FXML
+    private void registrarCita(ActionEvent event) throws IOException {
+            
+            try {
+            FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/noveno.fxml"));
+            Parent root3 = loader3.load();
+            NovenoController controlador3  = loader3.getController();
+            Scene scene3 = new Scene(root3);
+            Stage stage3 = new Stage();
+
+            stage3.setScene(scene3);
+            stage3.show();
+           
+            stage3.setOnCloseRequest(e->controlador3.closeWindows());
+            Stage myStage3 = (Stage) this.cCita.getScene().getWindow();
+            myStage3.close();
+           
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+            
+    }
+
 }

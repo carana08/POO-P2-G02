@@ -14,15 +14,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import modelo.Cita;
 import modelo.Empleado;
-
 /**
  * FXML Controller class
  *
@@ -30,27 +29,25 @@ import modelo.Empleado;
  */
 public class NovenoController implements Initializable {
 
-    @FXML
-    private Button guardar;
-    @FXML
-    private Button realizarA;
-    @FXML
-    private GridPane gPaneAtencion;
-    @FXML
-    private TextField txtD;
-    @FXML
-    private ComboBox cmbT;
-    @FXML
-    private Label cliente;
+
     @FXML
     private Label fecha;
     @FXML
     private Label hora;
-
+    @FXML
+    private ComboBox cmbT;
+    @FXML
+    private TextField txtD;
+    @FXML
+    private Label cliente;
+    @FXML
+    private Button guardar;
+    @FXML
+    private Button realizarA;
     /**
      * Initializes the controller class.
      */
-    @Override
+ @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         //Llenando el combo box 
@@ -65,7 +62,7 @@ public class NovenoController implements Initializable {
     
     @FXML
     private void guardado(ActionEvent event) throws IOException {
-        App.setRoot("sexto");
+       /* App.setRoot("sexto");
         //String duracion= txtD.getText();
         //Empleado empleado = (Empleado) cmbT.getValue();
         //System.out.println(empleado);
@@ -74,7 +71,7 @@ public class NovenoController implements Initializable {
         Cita.registrarCita(cita);
         
         
-        System.out.println("Guardando");
+        System.out.println("Guardando");*/
     }
 /*
     @FXML
@@ -103,6 +100,15 @@ public class NovenoController implements Initializable {
     @FXML
     private void listado(ActionEvent event) {
     }
+    public void llenarCampos(Cita c){
+        fecha.setText(c.getFecha());
+        hora.setText(c.getHoraInicio());
+        cliente.setText((c.getCliente()).getNombre());
+        txtD.setText(String.valueOf(c.getDuracionR()));
+        cmbT.setValue(c.getEmpleado().getNombre());
 
-
+}
+    public void llenarCombo(ArrayList<Cita> citas) {
+        cmbT.getItems().setAll(citas);
+    }
 }
