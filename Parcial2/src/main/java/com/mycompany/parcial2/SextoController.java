@@ -7,8 +7,6 @@ package com.mycompany.parcial2;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,47 +21,47 @@ import javafx.stage.Stage;
 import modelo.Cita;
 import modelo.Cliente;
 import modelo.Empleado;
-import modelo.Persona;
 import modelo.Servicio;
 /**
  * FXML Controller class
  *
- * @author Karen
+ * @author César
  */
 public class SextoController implements Initializable {
-        
+
+
     @FXML
-    private TableView tvCitas;
+    private TableView tcCitas;
     @FXML
-    private TableColumn<Cliente, String> nombreCliente;
+    private TableColumn<Cliente, String> nombre;
     @FXML
-    private TableColumn<Empleado, String> nombreEmpleado;
-    @FXML
-    private TableColumn<Servicio, String> nombreServicio;
+    private TableColumn<Servicio, String> servicio;
     @FXML
     private TableColumn<Cita, String> fecha;
     @FXML
-    private TableColumn<Cita, String> duracion;
+    private TableColumn<Cita, String> hora;
     @FXML
-    private TableColumn<Cita, String> inicioH;
+    private TableColumn<Cita, String> opciones;
     @FXML
-    private Button agregarC;
+    private Button crCita;
     @FXML
-    private Button editarC;
+    private Button rCita;
     @FXML
-    private Button eliminarC;
+    private Button cCita;
+    @FXML
+    private TableColumn<Empleado, String> terapista;
     /**
      * Initializes the controller class.
      */
-    @Override
+     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        nombreCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
-        nombreEmpleado.setCellValueFactory(new PropertyValueFactory<>("empleado"));
-        nombreServicio.setCellValueFactory(new PropertyValueFactory<>("servicio"));
+        nombre.setCellValueFactory(new PropertyValueFactory<>("cliente"));
+        terapista.setCellValueFactory(new PropertyValueFactory<>("empleado"));
+        servicio.setCellValueFactory(new PropertyValueFactory<>("servicio"));
         fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
-        duracion.setCellValueFactory(new PropertyValueFactory<>("duracionR"));
-        inicioH.setCellValueFactory(new PropertyValueFactory<>("horaInicio"));
-        tvCitas.getItems().setAll(Cita.cargarCita());
+        hora.setCellValueFactory(new PropertyValueFactory<>("duracionR"));
+        fecha.setCellValueFactory(new PropertyValueFactory<>("horaInicio"));
+        tcCitas.getItems().setAll(Cita.cargarCita());
         // TODO
     }    
     public void closeWindows(){
@@ -77,22 +75,13 @@ public class SextoController implements Initializable {
            stage.setScene(scene);
            stage.show();
 
-           Stage myStage = (Stage) this.agregarC.getScene().getWindow();
+           Stage myStage = (Stage) this.crCita.getScene().getWindow();
            myStage.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         } 
     
-    }
-    @FXML
-    private void agregarCita(ActionEvent event) {
-    }
-
-    @FXML
-    private void editarCita(ActionEvent event) {
-    }
-
-    @FXML
-    private void eliminarCita(ActionEvent event) {
-    }
+    }   
+    
 }
+
