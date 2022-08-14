@@ -93,7 +93,7 @@ public class TerceraController implements Initializable{
     @FXML
     private void atencion(ActionEvent event) {
         try {
-            FXMLLoader loader5 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/septimo.fxml"));
+            FXMLLoader loader5 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/octavo.fxml"));
             
             Parent root5 = loader5.load();
             

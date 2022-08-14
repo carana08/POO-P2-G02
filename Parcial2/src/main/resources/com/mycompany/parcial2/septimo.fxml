@@ -17,9 +17,9 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <FlowPane fx:id="tvClientes" prefHeight="200.0" prefWidth="200.0">
+      <FlowPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <TableView prefHeight="257.0" prefWidth="600.0">
+            <TableView fx:id="tvClientes" prefHeight="257.0" prefWidth="600.0">
               <columns>
                 <TableColumn fx:id="nombre" prefWidth="75.0" text="Nombres" />
                 <TableColumn fx:id="apellido" prefWidth="75.0" text="Apellidos" />
