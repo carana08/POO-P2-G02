@@ -7,6 +7,7 @@ package com.mycompany.parcial2;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,7 +22,6 @@ import javafx.stage.Stage;
 import modelo.Cita;
 import modelo.Cliente;
 import modelo.Empleado;
-import modelo.Persona;
 import modelo.Servicio;
 /**
  * FXML Controller class
@@ -36,6 +36,8 @@ public class SextoController implements Initializable {
     @FXML
     private TableColumn<Cliente, String> nombre;
     @FXML
+    private TableColumn<Empleado, String> terapista;
+    @FXML
     private TableColumn<Servicio, String> servicio;
     @FXML
     private TableColumn<Cita, String> fecha;
@@ -49,12 +51,10 @@ public class SextoController implements Initializable {
     private Button rCita;
     @FXML
     private Button cCita;
-    @FXML
-    private TableColumn<Empleado, String> terapista;
     /**
      * Initializes the controller class.
      */
-     @Override
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         nombre.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         terapista.setCellValueFactory(new PropertyValueFactory<>("empleado"));
@@ -64,7 +64,28 @@ public class SextoController implements Initializable {
         tcCitas.getItems().setAll(Cita.cargarCita());
         // TODO
     }    
-    public void closeWindows(){
+    
+    @FXML
+    private void crearCita(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/noveno.fxml"));
+            Parent root3 = loader3.load();
+            NovenoController controlador3  = loader3.getController();
+            Scene scene3 = new Scene(root3);
+            Stage stage3 = new Stage();
+
+            stage3.setScene(scene3);
+            stage3.show();
+           
+            stage3.setOnCloseRequest(e->controlador3.closeWindows());
+            Stage myStage3 = (Stage) this.cCita.getScene().getWindow();
+            myStage3.close();
+           
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+public void closeWindows(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/tercera.fxml"));
             Parent root = loader.load();
@@ -75,13 +96,11 @@ public class SextoController implements Initializable {
            stage.setScene(scene);
            stage.show();
 
-           Stage myStage = (Stage) this.crCita.getScene().getWindow();
+           Stage myStage = (Stage) this.cCita.getScene().getWindow();
            myStage.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         } 
     
-    }   
-    
+    }
 }
-

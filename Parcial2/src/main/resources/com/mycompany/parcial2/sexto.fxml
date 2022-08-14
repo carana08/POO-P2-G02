@@ -42,7 +42,7 @@
       </FlowPane>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="crCita" mnemonicParsing="false" text="Crear Cita" />
+            <Button fx:id="crCita" mnemonicParsing="false" onAction="#crearCita" text="Crear Cita" />
             <Button fx:id="rCita" mnemonicParsing="false" text="Registar Cita" />
             <Button fx:id="cCita" mnemonicParsing="false" text="Consultar Cita" />
          </children>
