@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import modelo.Cita;
 import modelo.Cliente;
 import modelo.Empleado;
+import modelo.Persona;
 import modelo.Servicio;
 /**
  * FXML Controller class
@@ -59,8 +60,7 @@ public class SextoController implements Initializable {
         terapista.setCellValueFactory(new PropertyValueFactory<>("empleado"));
         servicio.setCellValueFactory(new PropertyValueFactory<>("servicio"));
         fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
-        hora.setCellValueFactory(new PropertyValueFactory<>("duracionR"));
-        fecha.setCellValueFactory(new PropertyValueFactory<>("horaInicio"));
+        hora.setCellValueFactory(new PropertyValueFactory<>("horaInicio"));
         tcCitas.getItems().setAll(Cita.cargarCita());
         // TODO
     }    
