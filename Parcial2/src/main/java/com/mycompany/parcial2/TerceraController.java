@@ -52,24 +52,16 @@ public class TerceraController implements Initializable{
     private void servicio(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/cuarto.fxml"));
-            
             Parent root = loader.load();
-            
            CuartoController controlador  = loader.getController();
-           
            Scene scene = new Scene(root);
            Stage stage = new Stage();
-           
-           
-            
-           stage.setScene(scene);
-         
+
+           stage.setScene(scene);         
            stage.show();
            
            stage.setOnCloseRequest(e->controlador.closeWindows());
-           
            Stage myStage = (Stage) this.servicios.getScene().getWindow();
-           
            myStage.close();
            
         } catch (IOException ex) {
@@ -105,7 +97,7 @@ public class TerceraController implements Initializable{
             
             Parent root5 = loader5.load();
             
-           CuartoController controlador  = loader5.getController();
+           OctavoController controlador5  = loader5.getController();
            
            Scene scene5 = new Scene(root5);
            Stage stage5 = new Stage();
@@ -116,7 +108,7 @@ public class TerceraController implements Initializable{
          
            stage5.show();
            
-           stage5.setOnCloseRequest(e->controlador.closeWindows());
+           stage5.setOnCloseRequest(e->controlador5.closeWindows());
            
            Stage myStage5 = (Stage) this.atenciones.getScene().getWindow();
            
@@ -153,7 +145,7 @@ public class TerceraController implements Initializable{
             
             Parent root4 = loader4.load();
             
-           CuartoController controlador  = loader4.getController();
+           SeptimoController controlador4  = loader4.getController();
            
            Scene scene4 = new Scene(root4);
            Stage stage4 = new Stage();
@@ -164,7 +156,7 @@ public class TerceraController implements Initializable{
          
            stage4.show();
            
-           stage4.setOnCloseRequest(e->controlador.closeWindows());
+           stage4.setOnCloseRequest(e->controlador4.closeWindows());
            
            Stage myStage4 = (Stage) this.clientes.getScene().getWindow();
            

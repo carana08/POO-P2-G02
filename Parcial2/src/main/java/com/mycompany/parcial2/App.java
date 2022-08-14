@@ -27,6 +27,8 @@ public class App extends Application {
         Empleado.crearArchivoEmpleado();
         Servicio.crearArchivoServicios();
         Cita.crearArchivoCitas();
+        Cliente.crearArchivoClientes();
+        Atencion.crearArchivoAtenciones();
         //Empleados, Servicios, Clientes y Atenciones
         Servicio s = new Servicio("terapia de lenguaje", "Activo", 1, 23.0f);
         Empleado e1 = new Empleado("Miguel", "Ochoa", "12032884843", "098687454", "jose@hotmail.es", "Inactivo");
