@@ -22,7 +22,7 @@
             <TableView fx:id="tvServicios" prefHeight="255.0" prefWidth="595.0">
               <columns>
                 <TableColumn fx:id="nombre" prefWidth="75.0" text="Nombre" />
-                <TableColumn fx:id="duracion" prefWidth="75.0" text="Duracion " />
+                <TableColumn fx:id="duracion" prefWidth="75.0" text="Duracion (Horas)" />
                   <TableColumn fx:id="precio" prefWidth="75.0" text="Precio" />
                   <TableColumn fx:id="estado" prefWidth="75.0" text="Estado" />
               </columns>

@@ -25,7 +25,7 @@
                 <TableColumn fx:id="nombreEmpleado" prefWidth="442.0" text="Empleado" />
                   <TableColumn fx:id="nombreServicio" prefWidth="442.0" text="Servicio" />
                   <TableColumn fx:id="fecha" prefWidth="442.0" text="Fecha" />
-                  <TableColumn fx:id="duracion" prefWidth="442.0" text="Tiempo" />
+                  <TableColumn fx:id="duracion" prefWidth="442.0" text="Tiempo(Horas)" />
                   <TableColumn fx:id="inicioH" prefWidth="442.0" text="Hora Inicio" />
               </columns>
                <columnResizePolicy>
