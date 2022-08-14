@@ -263,6 +263,7 @@ public class Sistema {
         
         }
         }
+                            
                             Cita cita = new Cita(fecha, hora, c, s, e, s.getDuracionServicio());
                             cita.crearCita(cita);
                             System.out.println("Cita Agregada");

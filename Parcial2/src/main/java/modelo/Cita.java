@@ -94,10 +94,9 @@ public class Cita {
     //getters y setters de las variables definidas
     public Cita(){}
 
-    public Cita(Cliente c, Empleado e, Servicio s, String f, double duracionR, String h, String hf) {
+    public Cita(String f, String h, Cliente c, Servicio s, Empleado e, double duracionR) {
         fecha = f;
         horaInicio = h;
-        horaFin = hf;
         cliente = c;
         servicio = s;
         empleado = e;

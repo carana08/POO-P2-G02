@@ -27,7 +27,6 @@
                   <TableColumn fx:id="fecha" prefWidth="442.0" text="Fecha" />
                   <TableColumn fx:id="duracion" prefWidth="442.0" text="Tiempo" />
                   <TableColumn fx:id="inicioH" prefWidth="442.0" text="Hora Inicio" />
-                  <TableColumn fx:id="finH" prefWidth="442.0" text="Hora Fin" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

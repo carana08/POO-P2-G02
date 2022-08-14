@@ -34,7 +34,7 @@ public class App extends Application {
         Empleado e1 = new Empleado("Miguel", "Ochoa", "12032884843", "098687454", "jose@hotmail.es", "Inactivo");
         Empleado e2 = new Empleado("Hector", "Ortega", "1203296213", "098688754", "Lot@hotmail.es", "Activo");
         Cliente c1 = new Cliente("Ana", "Suarez", "0909202584", "0999999999", "anasuarez@gmail.com", "Clarisa");
-        Cita c = new Cita(c1, e1 ,s, "05/07/2022", 5, "16:00","18:00");
+        Cita c = new Cita("05/07/2022", "16:00", c1, s, e1, 2);
         Atencion a = new Atencion(c);
         
         Servicio.registrarServicio(s);

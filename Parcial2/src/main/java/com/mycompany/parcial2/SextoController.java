@@ -46,8 +46,6 @@ public class SextoController implements Initializable {
     @FXML
     private TableColumn<Cita, String> inicioH;
     @FXML
-    private TableColumn<Cita, String> finH;
-    @FXML
     private Button agregarC;
     @FXML
     private Button editarC;
@@ -64,7 +62,6 @@ public class SextoController implements Initializable {
         fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         duracion.setCellValueFactory(new PropertyValueFactory<>("duracionR"));
         inicioH.setCellValueFactory(new PropertyValueFactory<>("horaInicio"));
-        finH.setCellValueFactory(new PropertyValueFactory<>("horFin"));
         tvCitas.getItems().setAll(Cita.cargarCita());
         // TODO
     }    
