@@ -49,8 +49,9 @@ public class TerceraController implements Initializable{
     }    
     
     @FXML
-    private void servicio(ActionEvent event) {
-        try {
+    private void servicio(ActionEvent event) throws IOException {
+        App.setRoot("cuarto");
+       /* try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/cuarto.fxml"));
             Parent root = loader.load();
            CuartoController controlador  = loader.getController();
@@ -66,11 +67,13 @@ public class TerceraController implements Initializable{
            
         } catch (IOException ex) {
             ex.printStackTrace();
-        } 
+        } */
     }
 
     @FXML
-    private void cita(ActionEvent event) {
+    private void cita(ActionEvent event) throws IOException {
+        App.setRoot("sexto");
+        /*
         try {
             FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/sexto.fxml"));
             Parent root3 = loader3.load();
@@ -87,11 +90,13 @@ public class TerceraController implements Initializable{
            
         } catch (IOException ex) {
             ex.printStackTrace();
-        }
+        }*/
     }
 
     @FXML
-    private void atencion(ActionEvent event) {
+    private void atencion(ActionEvent event) throws IOException {
+        App.setRoot("octavo");
+        /*
         try {
             FXMLLoader loader5 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/octavo.fxml"));
             
@@ -116,12 +121,13 @@ public class TerceraController implements Initializable{
            
         } catch (IOException ex) {
             ex.printStackTrace();
-        } 
+        } */
     }
 
     @FXML
-    private void empleaado(ActionEvent event) {
-         try {
+    private void empleaado(ActionEvent event) throws IOException {
+         App.setRoot("quinto");
+        /*try {
         FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/quinto.fxml"));
         Parent root2 = loader2.load();
         QuintoController controlador2 = loader2.getController();
@@ -134,13 +140,14 @@ public class TerceraController implements Initializable{
         myStage2.close();
         }catch (IOException ex) {
             ex.printStackTrace();
-        } 
+        } */
         
     }
 
     @FXML
-    private void cliente(ActionEvent event) {
-        try {
+    private void cliente(ActionEvent event) throws IOException {
+        App.setRoot("septimo");
+        /*try {
             FXMLLoader loader4 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/septimo.fxml"));
             
             Parent root4 = loader4.load();
@@ -164,7 +171,7 @@ public class TerceraController implements Initializable{
            
         } catch (IOException ex) {
             ex.printStackTrace();
-        } 
+        } */
     }
 
     @FXML

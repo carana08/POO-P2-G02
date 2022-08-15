@@ -19,7 +19,7 @@
       </Label>
       <FlowPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <TableView fx:id="tvClientes" prefHeight="257.0" prefWidth="600.0">
+            <TableView fx:id="tvClientes" onMouseClicked="#mostrarDetalle" prefHeight="257.0" prefWidth="600.0">
               <columns>
                 <TableColumn fx:id="nombre" prefWidth="75.0" text="Nombres" />
                 <TableColumn fx:id="apellido" prefWidth="75.0" text="Apellidos" />
@@ -36,17 +36,17 @@
       </FlowPane>
       <HBox alignment="CENTER" prefHeight="161.0" prefWidth="600.0">
          <children>
-            <Button fx:id="agregarCl" mnemonicParsing="false" text="Agregar Cliente">
+            <Button fx:id="agregarCl" mnemonicParsing="false" onAction="#agregar" text="Agregar Cliente">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="editarCL" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Editar Cliente">
+            <Button fx:id="editarCL" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#editar" text="Editar Cliente">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="eliminarCl" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Eliminar Cliente" />
+            <Button fx:id="eliminarCl" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#eliminar" text="Eliminar Cliente" />
          </children>
       </HBox>
    </children>

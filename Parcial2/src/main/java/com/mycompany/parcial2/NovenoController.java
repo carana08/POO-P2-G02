@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -62,16 +63,22 @@ public class NovenoController implements Initializable {
     
     @FXML
     private void guardado(ActionEvent event) throws IOException {
-       /* App.setRoot("sexto");
-        //String duracion= txtD.getText();
-        //Empleado empleado = (Empleado) cmbT.getValue();
-        //System.out.println(empleado);
+       App.setRoot("sexto");
+        String duracion= txtD.getText();
+        Empleado empleado = (Empleado) cmbT.getValue();
+        System.out.println(empleado);
         
         Cita cita = new Cita();
         Cita.registrarCita(cita);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText("Resultado de la operación");
+            alert.setContentText("Cita registrada exitosamente");
+
+            alert.showAndWait();
         
         
-        System.out.println("Guardando");*/
+        System.out.println("Guardando");
     }
 /*
     @FXML

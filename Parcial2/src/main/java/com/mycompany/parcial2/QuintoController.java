@@ -63,6 +63,7 @@ public class QuintoController implements Initializable {
         tvEmpleado.getItems().setAll(Empleado.cargarEmpleado());
         // TODO
     }
+    /*
 public void closeWindows(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/tercera.fxml"));
@@ -80,7 +81,7 @@ public void closeWindows(){
             ex.printStackTrace();
         } 
     
-    }
+    }*/
         // TODO    
     
     @FXML

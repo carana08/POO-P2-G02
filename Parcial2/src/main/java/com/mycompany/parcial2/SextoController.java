@@ -68,7 +68,7 @@ public class SextoController implements Initializable {
     
     @FXML
     private void crearCita(ActionEvent event) throws IOException {
-        try {
+        /*try {
             FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/noveno.fxml"));
             Parent root3 = loader3.load();
             NovenoController controlador3  = loader3.getController();
@@ -84,7 +84,7 @@ public class SextoController implements Initializable {
            
         } catch (IOException ex) {
             ex.printStackTrace();
-        }
+        }*/
     }
 public void closeWindows(){
         try {
@@ -107,8 +107,9 @@ public void closeWindows(){
 
     @FXML
     private void registrarCita(ActionEvent event) throws IOException {
+        App.setRoot("noveno");
             
-            try {
+          /*  try {
             FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/noveno.fxml"));
             Parent root3 = loader3.load();
             NovenoController controlador3  = loader3.getController();
@@ -124,7 +125,7 @@ public void closeWindows(){
            
         } catch (IOException ex) {
             ex.printStackTrace();
-        }
+        }*/
             
     }
 

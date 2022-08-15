@@ -17,6 +17,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Cliente extends Persona implements Serializable{
 
@@ -130,5 +131,29 @@ public class Cliente extends Persona implements Serializable{
             ex.printStackTrace();
         }
     
+    }
+        @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.getCedula());
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        if (!Objects.equals(this.getCedula(), other.getCedula())) {
+            return false;
+        }
+        return true;
     }
 }
