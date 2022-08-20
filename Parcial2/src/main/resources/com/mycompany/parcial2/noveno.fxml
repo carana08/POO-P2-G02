@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.parcial2.NovenoController">
    <children>
       <Label text="Registro Cita">
@@ -63,7 +62,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="realizarA" mnemonicParsing="false" text="Realizar Actividad" />
+            <Button fx:id="realizarA" mnemonicParsing="false" onAction="#realizarAct" text="Realizar Actividad" />
          </children>
       </HBox>
    </children>

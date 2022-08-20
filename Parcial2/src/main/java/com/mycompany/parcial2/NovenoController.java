@@ -118,4 +118,9 @@ public class NovenoController implements Initializable {
     public void llenarCombo(ArrayList<Cita> citas) {
         cmbT.getItems().setAll(citas);
     }
+
+    @FXML
+    private void realizarAct(ActionEvent event) throws IOException {
+        App.setRoot("bingo");
+    }
 }
