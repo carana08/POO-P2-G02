@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -38,7 +39,8 @@ import javafx.scene.layout.Background;
  * @author César
  */
 public class BingoController {
-    String turnoC ="";
+    Label tiempoEmpleado = new Label();
+    String turnoP ="";
     ArrayList<String> imagenes = new ArrayList<>();
     int correctas = 0;
     int incorrectas = 0;
@@ -52,12 +54,16 @@ public class BingoController {
     private HBox hCont;
     TextField turno = new TextField();
     Button agregar = new Button("Establecer Turno");
-    int turnos=1;
+    int turnos=0;
+    int turnoFin=0;
+    int tTranscurrido;
     Label tex = new Label();
     @FXML
     private HBox hCont2;
     ImageView imagenSet= new ImageView();
     ArrayList<String> imag = new ArrayList<>();
+    Button finAct = new Button("Fin Actividad");
+    Label tiempo = new Label();
     /**
      * Initializes the controller class.
      */
@@ -115,6 +121,7 @@ public class BingoController {
                   System.out.println("Correcta");
                   correctas+=1;
                   turnos-=1;
+                  turnoFin+=1;
             for(Integer num:listaBin){
               tex.setText(String.valueOf(num));
               
@@ -127,6 +134,7 @@ public class BingoController {
                 System.out.println("Incorrecta");
                   incorrectas+=1;
                   turnos-=1;
+                  turnoFin+=1;
             for(Integer num:listaBin){
               tex.setText(String.valueOf(num));
               
@@ -135,7 +143,16 @@ public class BingoController {
                 
                 
             
-            }
+            }        if(turnoFin==Integer.valueOf(turno.getText())){
+           tabla.setVisible(false);
+           tex.setVisible(false);
+           finAct.setVisible(true);
+           tiempoEmpleado.setVisible(true);
+           tiempo.setVisible(true);
+           
+
+            //Label terminado = new Label("Actividad Finalizada");
+        }
                 });
             if(e<=4){
                 if(e==2){
@@ -190,14 +207,21 @@ public class BingoController {
         turno.setPromptText("Número de turnos para la actividad");
         agregar.setOnAction(ev -> {
                     String texto = turno.getText();
-                    turnos=Integer.valueOf(texto);
         if(texto!= ""){
-            String correcto = "";
-            
-            hCont2.getChildren().add(tex);
+            turnos=Integer.valueOf(texto);
+            //String correcto = "";
+            tiempo.setText("0");
+            tiempoEmpleado.setText("Tiempo Empleado en la Actividad:");
+            hCont2.getChildren().addAll(tex,finAct,tiempoEmpleado,tiempo);
             hCont2.setVisible(true);
             hCont.setVisible(false);
             tabla.setVisible(true);
+            finAct.setVisible(false);
+            tiempo.setVisible(false);
+            tiempoEmpleado.setVisible(false);
+            Thread hilo = new Thread(new Temporizador());
+            hilo.setDaemon(true);
+            hilo.start();         
             ArrayList<Integer> listaBin= new ArrayList<>();
             for(int i=0;i<turnos;i++){
                 int seleccion = (int)(Math.random()*13);
@@ -233,15 +257,50 @@ public class BingoController {
             });
         
         hCont.getChildren().addAll(turno,agregar,imagenSet);
-        
-        //vCont.getChildren().addAll(hCont,hCont2);
         System.out.println(numeros);
-        if(turnos==0){
-            vCont.getChildren().clear();
-            Label terminado = new Label("Actividad Finalizada");
-        }
+        finAct.setOnAction(ev->{
+            try {
+                App.setRoot("noveno");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+           
+           });
+
+
         // TODO
     }
 
-    
+ private class Temporizador implements Runnable{
+     boolean progresion = true;
+     @Override 
+     public void run(){
+         while(progresion){
+             try{
+                 Thread.sleep(1000);
+
+             }catch(InterruptedException ex){
+                 ex.printStackTrace();
+             }
+             incrementador();
+         
+         }
+         
+
+     
+     }
+     public void incrementador(){
+         tTranscurrido++;
+         Platform.runLater(()->{
+             tiempo.setText(String.valueOf(tTranscurrido));
+             
+         });
+         if(turnoFin==Integer.valueOf(turno.getText())){
+             progresion=false;
+         
+         }
+
+    }
+ }
+     
 }
