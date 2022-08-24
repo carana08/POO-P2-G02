@@ -108,7 +108,7 @@ public class BingoController {
                     }}
             
             }
-            if((turnos!=0)&&(Integer.valueOf(boton.getText())==Integer.valueOf(tex.getText()))){
+            if((turnos!=0)&&(Integer.parseInt(boton.getText())== Integer.parseInt(tex.getText()))){
                   System.out.println("Correcta");
                   boton.setStyle("-fx-background-color: MediumSeaGreen");
                   FileInputStream f;
@@ -117,6 +117,7 @@ public class BingoController {
                       Image imagen = new Image(f,100,100,false,false);
                       ImageView imageView = new ImageView(imagen);
                       hCont.getChildren().addAll(imageView);
+                      
                   }catch(FileNotFoundException ex){
                       System.out.println(ex);
                   }
@@ -130,8 +131,9 @@ public class BingoController {
                   
               
               }
+
             }
-            else if((turnos!=0)&&(Integer.valueOf(boton.getText())!=Integer.valueOf(tex.getText()))){
+            else if((turnos!=0)&&(Integer.parseInt(boton.getText())!=Integer.parseInt(tex.getText()))){
                 System.out.println("Incorrecta");
                 boton.setStyle("-fx-background-color: Red");
                 FileInputStream f;
