@@ -30,7 +30,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <HBox fx:id="hCont" prefHeight="44.0" prefWidth="600.0" />
-      <HBox fx:id="hCont2" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+      <HBox fx:id="hCont" prefHeight="96.0" prefWidth="600.0" />
+      <HBox fx:id="hCont2" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="63.0" prefWidth="600.0" />
    </children>
 </VBox>
