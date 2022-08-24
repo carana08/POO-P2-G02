@@ -15,4 +15,6 @@ public class Constantes {
     public static final String rutaCitas = "archivos/citas.txt";
     public static final String rutaClientes = "archivos/clientes.txt";
     public static final String rutaAtenciones = "archivos/atenciones.txt";
+    public static final String rutaImg1 = "imagen/correcto.jpg";
+    public static final String rutaImg2 = "imagen/Incorrecto.png";
 }

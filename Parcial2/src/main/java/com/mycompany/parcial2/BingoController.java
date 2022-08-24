@@ -31,6 +31,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 import javafx.scene.layout.Background;
+import modelo.Constantes;
 
 /**
  * FXML Controller class
@@ -113,7 +114,7 @@ public class BingoController {
                   boton.setStyle("-fx-background-color: MediumSeaGreen");
                   FileInputStream f;
                   try{
-                      f= new FileInputStream("C:\\Users\\aleja\\Desktop\\POO-P2-G02\\Parcial2\\src\\imagenes\\correcto.jpg");
+                      f= new FileInputStream(Constantes.rutaImg1);
                       Image imagen = new Image(f,100,100,false,false);
                       ImageView imageView = new ImageView(imagen);
                       hCont.getChildren().addAll(imageView);
@@ -136,15 +137,20 @@ public class BingoController {
             else if((turnos!=0)&&(Integer.parseInt(boton.getText())!=Integer.parseInt(tex.getText()))){
                 System.out.println("Incorrecta");
                 boton.setStyle("-fx-background-color: Red");
+                aparecidos.add(Integer.parseInt(boton.getText()));
                 FileInputStream f;
                   try{
-                      f= new FileInputStream("C:\\Users\\aleja\\Desktop\\POO-P2-G02\\Parcial2\\src\\imagenes\\Incorrecto.png");
+                      f= new FileInputStream(Constantes.rutaImg2);
                       Image imagen = new Image(f,100,100,false,false);
                       ImageView imageView = new ImageView(imagen);
                       hCont.getChildren().addAll(imageView);
                   }catch(FileNotFoundException ex){
                       System.out.println(ex);
                   }
+                  /*
+                  if(aparecidos.contains(boton.getText())){
+                          boton.setStyle("-fx-background-color: Gray");
+                  }*/
                   
                   
                   incorrectas+=1;
