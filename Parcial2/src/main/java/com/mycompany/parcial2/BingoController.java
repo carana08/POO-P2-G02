@@ -4,11 +4,16 @@
  */
 package com.mycompany.parcial2;
 
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -24,11 +29,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.Clipboard;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+
+
 
 import javafx.scene.layout.Background;
 import modelo.Constantes;
@@ -39,7 +47,9 @@ import modelo.Constantes;
  * @author César
  */
 public class BingoController {
+    int j=0;
     Label tiempoEmpleado = new Label();
+    ArrayList<Integer> listaBin= new ArrayList<>();
     String turnoP ="";
     ArrayList<Integer> aparecidos = new ArrayList<>();
     int correctas = 0;
@@ -65,11 +75,14 @@ public class BingoController {
     Button finAct = new Button("Fin Actividad");
     Label tiempo = new Label();
     VBox insImagen = new VBox();
+    ArrayList<Integer>valores = new ArrayList<>();
+    
     /**
      * Initializes the controller class.
      */
     public void initialize() {
-        //System.out.println(aparecidos);
+        
+
         tabla.setVisible(false);
         double valor1 = (int)Math.random()*10+1;
         int e = 0;
@@ -83,60 +96,74 @@ public class BingoController {
            else{
                numeros.add(valor-1);
            }
+           valores.add(0);
+
         }
-        System.out.println(numeros);
+        
+        for(int a=0;a<=19;a++){
+            int aletorio = (int)(Math.random()*20);
+            if(valores.get(aletorio)==0){
+                valores.set(aletorio, numeros.get(a)); 
+            }
+            else if(valores.get(aletorio)!=0){
+                int indiceA= 0;
+                for(int i=0;i<=19;i++){
+                int aletorio2=(int)(Math.random()*19);
+                if(valores.get(aletorio2)==0){
+                    indiceA=aletorio2; 
+                }}
+                valores.set(indiceA, numeros.get(a));
+                //valores.set(aletorio, numeros.get(a)); 
+            }
+          }
+
+
         for(Integer v:numeros){
             Button boton = new Button(String.valueOf(v));
+            boton.setMaxSize(50, 50);
 
             Button boton2 = new Button("   ");
+            boton2.setMaxSize(50, 50);
             boton.setOnAction(ev->{
-                //tabla.setVisible(false);
-            ArrayList<Integer> listaBin= new ArrayList<>();
-           for(int i=0;i<turnos;i++){
-                int seleccion = (int)(Math.random()*13);
-                if(!(listaBin.contains(seleccion))){
-                    Integer num=numeros.get(seleccion);
-                    listaBin.add(num);
-                }
-                else{
-                    if(seleccion==13){
-                    Integer num=numeros.get(seleccion-1);
-                    listaBin.add(num);
-                }
-                    else{
-                        Integer num=numeros.get(seleccion+1);
-                        listaBin.add(num);
-                    }}
-            
-            }
             if((turnos!=0)&&(Integer.parseInt(boton.getText())== Integer.parseInt(tex.getText()))){
                   System.out.println("Correcta");
+                  
                   boton.setStyle("-fx-background-color: MediumSeaGreen");
+                  
+                  
                   FileInputStream f;
-                  try{
+                  try{ 
                       f= new FileInputStream(Constantes.rutaImg1);
                       Image imagen = new Image(f,100,100,false,false);
                       ImageView imageView = new ImageView(imagen);
+                      
                       hCont.getChildren().addAll(imageView);
+                      
                       
                   }catch(FileNotFoundException ex){
                       System.out.println(ex);
                   }
                   correctas+=1;
                   turnos-=1;
+                  j+=1;
+                  tex.setText(String.valueOf(valores.get(j)));
+                  
                   turnoFin+=1;
-            for(Integer num:listaBin){
-                tex.setText(String.valueOf(num));
+           // for(Integer num:listaBin){
+        
+                
+                System.out.println(j);
+                
               
                   //turnos-=1;
                   
               
-              }
+             // }
 
             }
             else if((turnos!=0)&&(Integer.parseInt(boton.getText())!=Integer.parseInt(tex.getText()))){
                 System.out.println("Incorrecta");
-                boton.setStyle("-fx-background-color: Red");
+                //boton.setStyle("-fx-background-color: Red");
                 aparecidos.add(Integer.parseInt(boton.getText()));
                 FileInputStream f;
                   try{
@@ -147,24 +174,12 @@ public class BingoController {
                   }catch(FileNotFoundException ex){
                       System.out.println(ex);
                   }
-                  /*
-                  if(aparecidos.contains(boton.getText())){
-                          boton.setStyle("-fx-background-color: Gray");
-                  }*/
-                  
+ 
                   
                   incorrectas+=1;
                   turnos-=1;
                   turnoFin+=1;
-            /*
-                 for(Integer num:listaBin){
-                tex.setText(String.valueOf(num));
-              
-                  //turnos-=1;
-                  
-              
-              }*/
-                
+
                 
             
             }        if(turnoFin==Integer.valueOf(turno.getText())){
@@ -248,31 +263,18 @@ public class BingoController {
             Thread hilo = new Thread(new Temporizador());
             hilo.setDaemon(true);
             hilo.start();         
-            ArrayList<Integer> listaBin= new ArrayList<>();
-            for(int i=0;i<turnos;i++){
-                int seleccion = (int)(Math.random()*13);
-                if(!(listaBin.contains(seleccion))){
-                    Integer num=numeros.get(seleccion);
-                    listaBin.add(num);
-                }
-                else{
-                    if(seleccion==13){
-                    Integer num=numeros.get(seleccion-1);
-                    listaBin.add(num);
-                }
-                    else{
-                        Integer num=numeros.get(seleccion+1);
-                        listaBin.add(num);
-                    }}
+            
+           for(int i=0;i<turnos;i++){
+
             
             }
-            for(Integer num:numeros){
-              tex.setText(String.valueOf(num));
-              aparecidos.add(num);
+            System.out.println(listaBin);
+            
+              tex.setText(String.valueOf(valores.get(0)));
              
            /* */
 
-    }}else{
+    }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setTitle("Information Dialog");
@@ -286,7 +288,38 @@ public class BingoController {
         hCont.getChildren().addAll(turno,agregar,imagenSet);
         //System.out.println(numeros);
         finAct.setOnAction(ev->{
-            try {
+            try(FileWriter b = new FileWriter(Constantes.rutaActividad,true)) {
+                int minutos=0;
+                int segundos=0;
+                b.write(String.valueOf(correctas));
+                b.write(",");
+                b.write(String.valueOf(incorrectas));
+                b.write(",");
+                
+                if(Integer.valueOf(tiempo.getText())>=60){
+                minutos += Integer.valueOf(tiempo.getText())/60;
+                segundos += Integer.valueOf(tiempo.getText())-(minutos*60);
+                    System.out.println(segundos);
+                b.write(String.valueOf(minutos));
+                b.write(" minutos ");
+                b.write(": ");
+                b.write(String.valueOf(segundos));
+                b.write(" segundos");
+                b.write("\r\n");}
+                else if (Integer.valueOf(tiempo.getText())<60){
+                    minutos=0;
+                b.write(String.valueOf(minutos));
+                b.write(" minutos ");
+                b.write(": ");   
+                b.write(tiempo.getText());
+                b.write(" segundos");
+                b.write("\r\n");}
+           Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Information Dialog");
+            alert.setContentText("Actividad Registrada");
+            alert.showAndWait();
+                
                 App.setRoot("noveno");
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -329,5 +362,6 @@ public class BingoController {
 
     }
  }
+
      
 }

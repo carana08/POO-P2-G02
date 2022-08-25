@@ -17,4 +17,7 @@ public class Constantes {
     public static final String rutaAtenciones = "archivos/atenciones.txt";
     public static final String rutaImg1 = "imagen/correcto.jpg";
     public static final String rutaImg2 = "imagen/Incorrecto.png";
+    //public static final String son1 = "sonido/Correcto.mp3";
+    //public static final String son2 = "sonido/Error.mp3";
+    public static final String rutaActividad = "archivos/actividad.txt";
 }
