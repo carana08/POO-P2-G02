@@ -61,7 +61,7 @@ public class SeptimoController implements Initializable {
     @FXML
     private Button editarCL;
     @FXML
-    private ObservableList<Cliente> clientes =FXCollections.observableArrayList();;
+    private ObservableList<Cliente> clientes =FXCollections.observableArrayList();
     
     private ArrayList<Cliente> client;
     private Cliente cliente;

@@ -31,17 +31,17 @@
       </FlowPane>
       <HBox alignment="CENTER" prefHeight="161.0" prefWidth="600.0">
          <children>
-            <Button fx:id="agregarA" mnemonicParsing="false" text="Agregar Atencion">
+            <Button fx:id="agregarA" mnemonicParsing="false" onAction="#agregarA" text="Agregar Atencion">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="editarA" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Editar Atencion">
+            <Button fx:id="editarA" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#editarA" text="Editar Atencion">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="eliminarA" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Eliminar Atencion" />
+            <Button fx:id="eliminarA" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#eliminarA" text="Eliminar Atencion" />
          </children>
       </HBox>
    </children>
