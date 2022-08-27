@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.parcial2.DoceController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.parcial2.DoceController">
    <children>
       <Label text="Crear Cita">
          <font>
@@ -36,9 +35,9 @@
                   <Label alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="17.0" prefWidth="40.0" text="Fecha:" />
                   <Label text="Hora:" GridPane.rowIndex="1" />
                   <Label text="Cliente:" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txtFecha" GridPane.columnIndex="1" />
+                  <TextField fx:id="txtHora" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="cmbC" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <GridPane>
@@ -55,21 +54,21 @@
                   <Label text="Servicio:" />
                   <Label text="Empleado:" GridPane.rowIndex="1" />
                   <Label text="Duración:" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" />
-                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtDuracion" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ComboBox fx:id="cmbS" prefWidth="150.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="cmbE" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>
       </VBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" text="Guardar">
+            <Button fx:id="guardar" mnemonicParsing="false" onAction="#guardado" text="Guardar">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Cancelar" />
+            <Button fx:id="cancelar" mnemonicParsing="false" onAction="#cancelacion" text="Cancelar" />
          </children>
       </HBox>
    </children>

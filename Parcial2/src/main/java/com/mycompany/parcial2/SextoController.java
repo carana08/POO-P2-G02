@@ -68,6 +68,7 @@ public class SextoController implements Initializable {
     
     @FXML
     private void crearCita(ActionEvent event) throws IOException {
+        App.setRoot("doce");
         /*try {
             FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/noveno.fxml"));
             Parent root3 = loader3.load();

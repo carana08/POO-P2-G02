@@ -4,7 +4,9 @@
  */
 package com.mycompany.parcial2;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -17,8 +19,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import modelo.Atencion;
 import modelo.Cita;
+import modelo.Cliente;
+import modelo.Constantes;
 import modelo.Empleado;
 
 /**
@@ -48,15 +53,52 @@ public class CatorceController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Llenando el combo box 
-        ArrayList<Cita> citas;
-        cmbC.getItems().setAll(Cita.cargarCita());
-        cmbC.setValue(cmbC.getValue());
-        agAten.setText("Agregar Atencion");
-        cita.setText("Cita:");
-        //cliente.setText(new PropertyValueFactory<>("fecha"));
-        
         // TODO
     }    
-    
+    @FXML
+    private void cancelando(ActionEvent event) throws IOException {
+        this.atencion=null;
+        Stage stage = (Stage)this.cancelar.getScene().getWindow();
+        stage.close();
+    }
+    @FXML
+    private void guardado(ActionEvent event) {
+        ArrayList<Atencion> atenciones = Atencion.cargarAtencion();
+        
+        if(atencion== null){
+            //System.out.println("Hola");
+            Atencion a = new Atencion();
+            atenciones.add(a);
+        
+        }else{
+           //debería setear la cita
+            
+            if (atenciones.contains(atencion)){
+                int ind = atenciones.indexOf(atencion);
+                
+                atenciones.set(ind, atencion);
+            }
+        
+        }try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constantes.rutaAtenciones))){
+            out.writeObject(atenciones);
+            out.flush();
+
+            //mostrar informacion
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText("Resultado de la operación");
+            alert.setContentText("Atencion editada exitosamente");
+            alert.showAndWait();
+            Stage stage = (Stage)this.editar.getScene().getWindow();
+            stage.close();
+            //App.setRoot("septimo");
+
+        } catch (IOException ex) {
+            System.out.println("IOException:" + ex.getMessage());
+        } 
+        
+    }
+    public void llenarCampos(ObservableList<Atencion> atenciones,Atencion a) {
+        //LLENAR
+    }
 }

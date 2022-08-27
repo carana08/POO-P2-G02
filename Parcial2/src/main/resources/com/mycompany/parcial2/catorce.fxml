@@ -27,12 +27,12 @@
       </HBox>
       <HBox alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="agregar" mnemonicParsing="false" text="Editar">
+            <Button fx:id="agregar" mnemonicParsing="false" onAction="#guardado" text="Editar">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="cancelar" mnemonicParsing="false" text="Cancelar" />
+            <Button fx:id="cancelar" mnemonicParsing="false" onAction="#cancelando" text="Cancelar" />
          </children>
       </HBox>
    </children>

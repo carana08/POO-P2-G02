@@ -45,10 +45,10 @@ public class TreceController implements Initializable {
     private Button cancelar;
     @FXML
     private ObservableList<Atencion> atenciones;
-    private Atencion atencion;
+    private Atencion atencionn;
    
     Atencion getAtencion(){
-    return atencion;}
+    return atencionn;}
     
     /**
      * Initializes the controller class.
@@ -106,16 +106,16 @@ public class TreceController implements Initializable {
         } 
     
     }
-    public void llenarCampos(Cliente c){
-        lblTitulo.setText("Editar Cliente");
-        txtCedula.setEditable(false);
-        txtCedula.setText(c.getCedula());
-        txtNombre.setText(c.getNombre());
-        txtApellido.setText(c.getApellido());
-        txtTelefono.setText(c.getTelefono());
-        txtEmail.setText(c.getEmail());
-        txtRepresentante.setText(c.getDatosRepresentante());}
-    
+    public void llenarCampos(Atencion a){
+        agAten.setText("Editar Atencion");
+        }
+    public void initAttributes(ObservableList<Atencion> atenciones) {
+        this.atenciones=atenciones;}
+    public void initAttributes(ObservableList<Atencion> atenciones,Atencion a) {
+        this.atenciones=atenciones;
+        this.atencionn=a;
+        
+    }
     
     /*public void llenarCampos(ObservableList<Atencion> atenciones,Atencion a) {
 
