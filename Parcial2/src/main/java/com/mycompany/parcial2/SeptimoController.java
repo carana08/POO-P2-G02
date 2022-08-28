@@ -254,8 +254,12 @@ public class SeptimoController implements Initializable {
     }
     
     public void eliminado(ArrayList<Cliente> lCliente,Cliente client){
-        ArrayList<Cliente> cliente = new ArrayList<>() ;
-            for(Cliente cli:Cliente.cargarCliente()){
+        ArrayList<Cliente> cliente = Cliente.cargarCliente();
+        File file = new File(Constantes.rutaClientes);
+        File file2 = new File(Constantes.rutaClientes);
+        file.delete();
+        
+            for(Cliente cli:cliente){
                 int i=0;
                 if(cli.equals(client)){
                     //System.out.println(cli);
@@ -265,16 +269,28 @@ public class SeptimoController implements Initializable {
                 }
                 else{
                     i+=1;
-                    cliente.add(cli);
-                    try(ObjectOutputStream escritura = new ObjectOutputStream(new FileOutputStream(Constantes.rutaClientes,false))){
-                        escritura.writeObject(cli);
+                    Cliente.registrarCliente(cli);
+                    
+                    /*try(ObjectOutputStream escritura = new ObjectOutputStream(new FileOutputStream(Constantes.rutaClientes))){
+                       
+                        escritura.writeObject(cliente);
                         escritura.flush();
                     }catch(IOException ex){
                         System.out.println("ERROR");
                     
-                    }
-                    clientes.remove(tvClientes.getSelectionModel().getSelectedItem());
-           this.tvClientes.refresh();
+                    }*/
+        
+                    
+                   // clientes.remove(tvClientes.getSelectionModel().getSelectedItem());
+           //this.tvClientes.refresh();
+           //tvClientes.refresh();
+          nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+       apellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        cedula.setCellValueFactory(new PropertyValueFactory<>("cedula"));
+        telefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+        email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        representante.setCellValueFactory(new PropertyValueFactory<>("datosRepresentante"));
+        tvClientes.getItems().setAll(Cliente.cargarCliente());
                 }
             }
         
