@@ -19,12 +19,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modelo.Cita;
 import modelo.Cliente;
 import modelo.Constantes;
+import modelo.Empleado;
+import modelo.Servicio;
 
 /**
  * FXML Controller class
@@ -40,18 +43,15 @@ public class DoceController implements Initializable {
     @FXML
     private TextField txtDuracion;
     @FXML
-    private TextField cmbS;
+    private ComboBox cmbS;
     @FXML
-    private TextField cmbE;
+    private ComboBox cmbE;
     @FXML
-    private TextField cmbC;
+    private ComboBox cmbC;
     @FXML
     private Button guardar;
     @FXML
     private Button cancelar;
-    @FXML
-    private Label crearC;
-    @FXML
     private ObservableList<Cita> citas;
     private Cita citaa;
    
@@ -62,6 +62,12 @@ public class DoceController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cmbC.getItems().setAll(Cliente.cargarCliente());
+        cmbE.getItems().setAll(Empleado.cargarEmpleado());
+        cmbS.getItems().setAll(Servicio.cargarServicio());
+        txtFecha.setPromptText("dd/mm/aaaa");
+        txtHora.setPromptText("hh:ss");
+        txtDuracion.setPromptText("0.0");
         // TODO
     }
 @FXML
@@ -69,7 +75,7 @@ public class DoceController implements Initializable {
         ArrayList<Cita> cita = Cita.cargarCita();//cargar la lista del archivo
      
         System.out.println("Guardando cita");
-        Cita c = new Cita();
+        Cita c = new Cita(txtFecha.getText(),txtHora.getText(),(Cliente)cmbC.getValue(),(Servicio)cmbS.getValue(),(Empleado)cmbE.getValue(),Double.valueOf(txtDuracion.getText()));
         cita.add(c);//agregar empleado a la lista
         //serializar la lista
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constantes.rutaCitas))){

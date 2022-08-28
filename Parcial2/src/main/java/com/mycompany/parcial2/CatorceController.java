@@ -53,6 +53,7 @@ public class CatorceController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cmbC.getItems().setAll(Atencion.cargarAtencion());
         // TODO
     }    
     @FXML
@@ -67,7 +68,7 @@ public class CatorceController implements Initializable {
         
         if(atencion== null){
             //System.out.println("Hola");
-            Atencion a = new Atencion();
+            Atencion a = new Atencion((Cita)cmbC.getValue());
             atenciones.add(a);
         
         }else{

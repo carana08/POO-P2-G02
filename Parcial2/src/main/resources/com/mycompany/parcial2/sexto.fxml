@@ -44,7 +44,7 @@
          <children>
             <Button fx:id="crCita" mnemonicParsing="false" onAction="#crearCita" text="Crear Cita" />
             <Button fx:id="rCita" mnemonicParsing="false" onAction="#registrarCita" text="Registar Cita" />
-            <Button fx:id="cCita" mnemonicParsing="false" text="Consultar Cita" />
+            <Button fx:id="cCita" mnemonicParsing="false" onAction="#consultarC" text="Consultar Cita" />
          </children>
       </HBox>
    </children>

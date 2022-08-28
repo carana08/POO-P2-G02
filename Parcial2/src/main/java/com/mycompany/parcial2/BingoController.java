@@ -21,8 +21,11 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -39,6 +42,8 @@ import javafx.scene.text.Font;
 
 
 import javafx.scene.layout.Background;
+import javafx.stage.Stage;
+import modelo.Cita;
 import modelo.Constantes;
 
 /**
@@ -47,6 +52,7 @@ import modelo.Constantes;
  * @author César
  */
 public class BingoController {
+    String bingo = "Bingo";
     int j=0;
     Label tiempoEmpleado = new Label();
     ArrayList<Integer> listaBin= new ArrayList<>();
@@ -76,7 +82,26 @@ public class BingoController {
     Label tiempo = new Label();
     VBox insImagen = new VBox();
     ArrayList<Integer>valores = new ArrayList<>();
-    
+    int minutosP= 0;
+    int segundosP=0;
+    public int getMinutosP(){
+        return minutosP;
+    }
+    public int getSegundosP(){
+        return segundosP;
+    }
+    public int getAciertos(){
+        return correctas;
+    }
+    public int getFallos(){
+        return incorrectas;
+    }
+    public String getBingo(){
+        return bingo;
+    }
+    private Cita cita;
+    public Cita getCita(){
+    return cita;}
     /**
      * Initializes the controller class.
      */
@@ -186,8 +211,19 @@ public class BingoController {
            tabla.setVisible(false);
            tex.setVisible(false);
            finAct.setVisible(true);
-           tiempoEmpleado.setVisible(true);
-           tiempo.setVisible(true);
+           //tiempoEmpleado.setVisible(true);
+           //tiempo.setVisible(true);
+           if(Integer.valueOf(tiempo.getText())>=60){
+                minutosP += Integer.valueOf(tiempo.getText())/60;
+                segundosP += Integer.valueOf(tiempo.getText())-(minutosP*60);}
+           else{
+               segundosP+=Integer.valueOf(tiempo.getText());
+           }
+           Alert alert = new Alert(Alert.AlertType.INFORMATION);
+           alert.setHeaderText(null);
+           alert.setTitle("Information De Actividad");
+           alert.setContentText("Selcecciones correctas: "+correctas+"\n"+"Selecciones incorrectas: "+incorrectas+"\n"+"Tiempo de actividad: "+minutosP+" minutos"+" : "+segundosP+" segundos");
+           alert.showAndWait();
            
 
             //Label terminado = new Label("Actividad Finalizada");
@@ -318,9 +354,11 @@ public class BingoController {
             alert.setHeaderText(null);
             alert.setTitle("Information Dialog");
             alert.setContentText("Actividad Registrada");
-            alert.showAndWait();
-                
-                App.setRoot("noveno");
+            alert.showAndWait();  
+            Stage stage = (Stage) this.finAct.getScene().getWindow();
+            stage.close();
+        
+            
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -362,6 +400,28 @@ public class BingoController {
 
     }
  }
+ 
+ public void closeWindows(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/noveno.fxml"));
+            Parent root = loader.load();
+            NovenoController controlador  = loader.getController();
+           Scene scene = new Scene(root);
+           Stage stage = new Stage();
+            
+           stage.setScene(scene);
+           stage.show();
+           stage.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+ }
+ @Override
+ public String toString(){
+     return bingo+cita.getFecha()+correctas+incorrectas+minutosP+segundosP;
+ }
+ 
+ 
 
      
 }

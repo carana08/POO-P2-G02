@@ -4,6 +4,7 @@
  */
 package com.mycompany.parcial2;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -68,16 +69,19 @@ public class DecimoController implements Initializable {
     
     @FXML
     private void guardado(ActionEvent event) {
-        ArrayList<Cliente> cliente = Cliente.cargarCliente();//cargar la lista del archivo
+        File file = new File(Constantes.rutaClientes);
+        ArrayList<Cliente> cliente = Cliente.cargarCliente();
+        //ArrayList<Cliente> cliente = new ArrayList<>();//cargar la lista del archivo
      
         System.out.println("Guardando cliente");
         Cliente c = new Cliente(txtNombre.getText(), txtApellido.getText(), txtCedula.getText(),txtTelefono.getText(),txtEmail.getText(),txtRepresentante.getText());
-        cliente.add(c);//agregar empleado a la lista
+        cliente.add(c);
+//agregar empleado a la lista
         //serializar la lista
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constantes.rutaClientes))){
-          
+            //out.writeObject(cliente2);
             out.writeObject(cliente);
-            out.flush();
+            //out.flush();
 
             //mostrar informacion
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -87,8 +91,9 @@ public class DecimoController implements Initializable {
 
             alert.showAndWait();
             //carga la ventana principal
-            
+            //Cliente.registrarCliente(c);
             App.setRoot("septimo");
+            
 
         } catch (IOException ex) {
             System.out.println("IOException:" + ex.getMessage());

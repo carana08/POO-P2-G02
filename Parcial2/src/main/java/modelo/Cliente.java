@@ -156,4 +156,7 @@ public class Cliente extends Persona implements Serializable{
         }
         return true;
     }
+    public void eliminar(int indice){
+        
+    }
 }

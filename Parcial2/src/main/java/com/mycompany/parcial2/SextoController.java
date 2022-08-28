@@ -7,18 +7,22 @@ package com.mycompany.parcial2;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelo.Cita;
 import modelo.Cliente;
@@ -52,6 +56,7 @@ public class SextoController implements Initializable {
     private Button rCita;
     @FXML
     private Button cCita;
+    private ObservableList<Cita> citas =FXCollections.observableArrayList();
     /**
      * Initializes the controller class.
      */
@@ -87,6 +92,7 @@ public class SextoController implements Initializable {
             ex.printStackTrace();
         }*/
     }
+    
 public void closeWindows(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/tercera.fxml"));
@@ -108,7 +114,42 @@ public void closeWindows(){
 
     @FXML
     private void registrarCita(ActionEvent event) throws IOException {
-        App.setRoot("noveno");
+       
+        Cita c = (Cita)tcCitas.getSelectionModel().getSelectedItem();
+                if(c==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("Debes seleccionar una cita");
+            alert.showAndWait();
+            
+        }
+        else{
+        
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/mycompany/parcial2/noveno.fxml"));
+        Parent root = loader.load();
+        NovenoController ct = loader.getController();
+        ct.llenarCampos(citas,c);
+        //App.setRoot("noveno");
+        
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        //stage.setScene(scene);         
+        //stage.show();
+        //stage.setOnCloseRequest(e->ct.closeWindows());
+        //Stage myStage = (Stage) this.editarCL.getScene().getWindow();
+        //myStage.close();
+        
+        //stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+        Cita aux = ct.getCita();
+        if(aux!=null){
+            this.tcCitas.refresh();
+        }
+        }
+              
+        
             
           /*  try {
             FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/noveno.fxml"));
@@ -128,6 +169,38 @@ public void closeWindows(){
             ex.printStackTrace();
         }*/
             
+    }
+
+    @FXML
+    private void consultarC(ActionEvent event) throws IOException {
+         Cita c = (Cita)tcCitas.getSelectionModel().getSelectedItem();
+                if(c==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("Debes seleccionar una Cita");
+            alert.showAndWait();
+            
+        }
+        else{
+        
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/mycompany/parcial2/Quince.fxml"));
+        Parent root = loader.load();
+        QuinceController ct = loader.getController();
+        ct.llenarCampos(c);
+        //App.setRoot("noveno");
+        
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+
+        stage.setScene(scene);
+        stage.showAndWait();
+        Cita aux = ct.getCita();
+        if(aux!=null){
+            this.tcCitas.refresh();
+        }
+        }
+        
     }
 
 }

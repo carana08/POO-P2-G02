@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.parcial2.QuinceController">
+   <children>
+      <Label text="Actividades Realizadas">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <HBox prefHeight="31.0" prefWidth="600.0">
+         <children>
+            <Label text="Cliente:">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="cliente" text="Label" />
+         </children>
+      </HBox>
+      <TableView fx:id="tvActividades" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="colActividad" prefWidth="75.0" text="Actividad" />
+          <TableColumn fx:id="colFecha" prefWidth="75.0" text="Fecha" />
+            <TableColumn fx:id="colAciertos" prefWidth="75.0" text="Aciertos" />
+            <TableColumn fx:id="colFallos" prefWidth="75.0" text="Fallos" />
+            <TableColumn fx:id="colTiempo" prefWidth="75.0" text="Tiempo" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</VBox>

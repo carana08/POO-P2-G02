@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modelo.Cita;
+import modelo.Cliente;
 import modelo.Empleado;
 /**
  * FXML Controller class
@@ -45,6 +47,12 @@ public class NovenoController implements Initializable {
     private Button guardar;
     @FXML
     private Button realizarA;
+    @FXML
+    ObservableList<Cita> citas;
+    private Cita cita;
+    public Cita getCita(){
+    return cita;}
+    
     /**
      * Initializes the controller class.
      */
@@ -85,42 +93,52 @@ public class NovenoController implements Initializable {
     private void listado(ActionEvent event) {
     }
     */
-     public void closeWindows(){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/sexto.fxml"));
-            Parent root = loader.load();
-            SextoController controlador  = loader.getController();
-           Scene scene = new Scene(root);
-           Stage stage = new Stage();
-            
-           stage.setScene(scene);
-           stage.show();
-
-           Stage myStage = (Stage) this.realizarA.getScene().getWindow();
-           myStage.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } 
-    
-    } 
+ 
 
     @FXML
     private void listado(ActionEvent event) {
     }
-    public void llenarCampos(Cita c){
+   /* public void llenarCampos(Cita c){
         fecha.setText(c.getFecha());
         hora.setText(c.getHoraInicio());
         cliente.setText((c.getCliente()).getNombre());
         txtD.setText(String.valueOf(c.getDuracionR()));
         cmbT.setValue(c.getEmpleado().getNombre());
 
-}
-    public void llenarCombo(ArrayList<Cita> citas) {
-        cmbT.getItems().setAll(citas);
-    }
+}*/
+
 
     @FXML
     private void realizarAct(ActionEvent event) throws IOException {
-        App.setRoot("bingo");
+        //App.setRoot("bingo");
+        try {
+            FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/com/mycompany/parcial2/bingo.fxml"));
+            Parent root3 = loader3.load();
+            BingoController controlador3  = loader3.getController();
+            Scene scene3 = new Scene(root3);
+            Stage stage3 = new Stage();
+
+            stage3.setScene(scene3);
+            stage3.show();
+            //stage3.close();
+           /*
+            stage3.setOnCloseRequest(e->controlador3.closeWindows());
+            Stage myStage3 = (Stage) this.realizarA.getScene().getWindow();
+            myStage3.close();*/
+           
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
+        public void llenarCombo(ArrayList<Cita> citas) {
+        cmbT.getItems().setAll(citas);
+    }
+    public void llenarCampos(ObservableList<Cita> citas,Cita c) {
+        this.fecha.setText(c.getFecha());
+        this.hora.setText(c.getHoraInicio());
+        this.cliente.setText(c.getCliente().getNombre()+" "+c.getCliente().getApellido());
+        //this.cmbT.set;
+        cita=c;
+    }
+       
 }

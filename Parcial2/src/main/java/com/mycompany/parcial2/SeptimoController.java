@@ -4,9 +4,12 @@
  */
 package com.mycompany.parcial2;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -60,7 +64,7 @@ public class SeptimoController implements Initializable {
     private Button eliminarCl;
     @FXML
     private Button editarCL;
-    @FXML
+   @FXML
     private ObservableList<Cliente> clientes =FXCollections.observableArrayList();
     
     private ArrayList<Cliente> client;
@@ -198,9 +202,14 @@ public class SeptimoController implements Initializable {
     
 
     @FXML
-    private void eliminar(ActionEvent event) throws FileNotFoundException, IOException {
+    private void eliminar(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
         Cliente c = (Cliente)tvClientes.getSelectionModel().getSelectedItem();
-         ArrayList<Cliente> clientesA = Cliente.cargarCliente();
+         ArrayList<Cliente> clientesA = new ArrayList<>();
+         ArrayList<Cliente> listaComparar = Cliente.cargarCliente();
+         File file = new File(Constantes.rutaClientes);
+         System.out.println(listaComparar);
+         //File ficheroEntrada = null;
+         //File ficheroSalida = null;
         if(c==null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -209,16 +218,22 @@ public class SeptimoController implements Initializable {
             alert.showAndWait();
         }
         else{
-            clientes.remove(c);
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constantes.rutaClientes))){
-            out.writeObject(clientesA);
-            out.flush();}
-            this.tvClientes.refresh();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
+            eliminado(listaComparar, c);
+  
+            
+
+
+            
+            //Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            //alert.setResult(ButtonType.OK);
+            /*alert.setHeaderText(null);
             alert.setTitle("Info");
             alert.setContentText("Se ha borrado la persona");
             alert.showAndWait();
+            */
+                     //clientes.remove(tvClientes.getSelectionModel().getSelectedItem());
+           //this.tvClientes.refresh();
+            
         }
     }
 
@@ -237,4 +252,32 @@ public class SeptimoController implements Initializable {
         System.out.println(tvClientes.getSelectionModel().getSelectedIndex());
         System.out.println(c);*/
     }
+    
+    public void eliminado(ArrayList<Cliente> lCliente,Cliente client){
+        ArrayList<Cliente> cliente = new ArrayList<>() ;
+            for(Cliente cli:Cliente.cargarCliente()){
+                int i=0;
+                if(cli.equals(client)){
+                    //System.out.println(cli);
+                    lCliente.remove(cli);
+                    i+=1;
+                    System.out.println(cliente);
+                }
+                else{
+                    i+=1;
+                    cliente.add(cli);
+                    try(ObjectOutputStream escritura = new ObjectOutputStream(new FileOutputStream(Constantes.rutaClientes,false))){
+                        escritura.writeObject(cli);
+                        escritura.flush();
+                    }catch(IOException ex){
+                        System.out.println("ERROR");
+                    
+                    }
+                    clientes.remove(tvClientes.getSelectionModel().getSelectedItem());
+           this.tvClientes.refresh();
+                }
+            }
+        
+    }
+    
 }

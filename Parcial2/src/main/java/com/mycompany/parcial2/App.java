@@ -23,6 +23,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        
+        
         Persona.crearArchivoPersona();
         Empleado.crearArchivoEmpleado();
         Servicio.crearArchivoServicios();
@@ -42,7 +44,8 @@ public class App extends Application {
         Empleado.registrarEmpleado(e2);
         Cliente.registrarCliente(c1);
         Cita.registrarCita(c);
-        Atencion.registrarAtencion(a);
+        Atencion.registrarAtencion(a);//Comentar de la linea 28 a la linea 47 para que se evidencie
+                                       // que se ha agregado informacion al archivo
         scene = new Scene(loadFXML("tercera"), 640, 480);
         stage.setScene(scene);
         stage.show();

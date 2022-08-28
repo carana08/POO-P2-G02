@@ -55,13 +55,15 @@ public class TreceController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cmbC.getItems().setAll(Cita.cargarCita());
+        
     }
     @FXML
     private void guardado(ActionEvent event) throws IOException {
        ArrayList<Atencion> atencion = Atencion.cargarAtencion();//cargar la lista del archivo
      
         System.out.println("Guardando atencion");
-        Atencion a = new Atencion(); //Debe ponerse la cita elegida en el comboBox
+        Atencion a = new Atencion((Cita)cmbC.getValue()); //Debe ponerse la cita elegida en el comboBox
         atencion.add(a);//agregar empleado a la lista
         //serializar la lista
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(Constantes.rutaAtenciones))){
