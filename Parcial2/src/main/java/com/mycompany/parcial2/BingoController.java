@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -93,8 +94,15 @@ public class BingoController {
     public int getAciertos(){
         return correctas;
     }
+    public String getAciertosS(){
+        return Integer.toString(correctas);
+    }
+    
     public int getFallos(){
         return incorrectas;
+    }
+    public String getFallosS(){
+        return Integer.toString(incorrectas);
     }
     public String getBingo(){
         return bingo;
@@ -367,6 +375,21 @@ public class BingoController {
 
 
         // TODO
+    }
+    public static ArrayList<BingoController> cargarActividad(){
+        ArrayList<BingoController> listaRetorno  = new ArrayList<>();
+        
+        try(ObjectInputStream lector = new ObjectInputStream(new FileInputStream(Constantes.rutaActividad))) {
+            listaRetorno = (ArrayList<BingoController>)lector.readObject();   
+        }
+        catch(FileNotFoundException e){
+            System.out.println("El archivo no fue encontrado");}
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }  catch (Exception ex) {
+            System.out.println("Error " + ex.getMessage());
+        } 
+        return listaRetorno;
     }
 
  private class Temporizador implements Runnable{

@@ -55,6 +55,12 @@ public class QuinceController implements Initializable {
     this.cliente.setText(c.getCliente().getNombre()+" "+c.getCliente().getApellido());
         //this.cmbT.set;
      cita=c;
+     BingoController bc = new BingoController();
+     this.colFecha.setCellValueFactory(new PropertyValueFactory<>(c.getFecha()));
+     this.colAciertos.setCellValueFactory(new PropertyValueFactory<>(bc.getAciertosS()));
+     this.colFallos.setCellValueFactory(new PropertyValueFactory<>(bc.getFallosS()));
+     this.colTiempo.setCellValueFactory(new PropertyValueFactory<>("bc.getMinutosP()"));
+     this.tvActividades.getItems().setAll(cita.cargarCita());
     }
 
 }
