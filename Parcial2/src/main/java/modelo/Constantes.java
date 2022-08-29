@@ -20,4 +20,5 @@ public class Constantes {
     //public static final String son1 = "sonido/Correcto.mp3";
     //public static final String son2 = "sonido/Error.mp3";
     public static final String rutaActividad = "archivos/actividad.txt";
+     public static final String rutaInfo = "archivos/informacion.txt";
 }

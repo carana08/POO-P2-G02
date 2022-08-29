@@ -4,8 +4,14 @@
  */
 package com.mycompany.parcial2;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,7 +31,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelo.Cita;
+import static modelo.Cita.cargarCita;
 import modelo.Cliente;
+import modelo.Constantes;
 import modelo.Empleado;
 import modelo.Servicio;
 /**
@@ -202,5 +210,6 @@ public void closeWindows(){
         }
         
     }
+
 
 }

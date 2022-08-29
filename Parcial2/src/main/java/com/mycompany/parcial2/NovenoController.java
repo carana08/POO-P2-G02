@@ -4,7 +4,12 @@
  */
 package com.mycompany.parcial2;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -23,7 +28,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modelo.Cita;
+import static modelo.Cita.cargarCita;
 import modelo.Cliente;
+import modelo.Constantes;
 import modelo.Empleado;
 /**
  * FXML Controller class
@@ -52,13 +59,18 @@ public class NovenoController implements Initializable {
     private Cita cita;
     public Cita getCita(){
     return cita;}
+    public String fechaF;
+    public String getFechaF(){
+        return fechaF;
+                
+    }
     
     /**
      * Initializes the controller class.
      */
  @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        NovenoController.crearArchivoInformacion();
         //Llenando el combo box 
         ArrayList<Empleado> empleado;
         cmbT.getItems().setAll(Empleado.cargarEmpleado());
@@ -78,6 +90,8 @@ public class NovenoController implements Initializable {
         
         Cita cita = new Cita();
         Cita.registrarCita(cita);
+        
+        NovenoController.registrarInfo(fecha.getText(), hora.getText(), cliente.getText(), cmbT.getValue().toString(), txtD.getText(), BingoController.cargarActividad());
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText("Resultado de la operación");
@@ -139,6 +153,53 @@ public class NovenoController implements Initializable {
         this.cliente.setText(c.getCliente().getNombre()+" "+c.getCliente().getApellido());
         //this.cmbT.set;
         cita=c;
+    }
+        public static void crearArchivoInformacion(){
+        try(ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constantes.rutaInfo))){
+            ArrayList<String> listaRegistros = new ArrayList<>();
+            escritor.writeObject(listaRegistros);
+            escritor.flush();
+            
+            
+        }catch(IOException e){
+            e.printStackTrace();}
+        catch(Exception e){
+            System.out.println("-------Excepcion general--------");
+        }
+    
+    }
+    public static ArrayList<String> cargarInformacion(){
+        ArrayList<String> listaRetorno = new ArrayList<>();
+        try(ObjectInputStream lector = new ObjectInputStream(new FileInputStream(Constantes.rutaInfo))) {
+            listaRetorno = (ArrayList<String>)lector.readObject();   
+        }
+        catch(FileNotFoundException e){
+            System.out.println("El archivo no fue encontrado");}
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }  catch (Exception ex) {
+            System.out.println("Error " + ex.getMessage());
+        } 
+        return listaRetorno;
+    }
+    public static void registrarInfo(String fe,String ho,String cli,String ter,String dur,ArrayList<String> in){
+        ArrayList<String>listaActualizada = cargarInformacion();
+        listaActualizada.add(fe);
+        listaActualizada.add(ho);
+        listaActualizada.add(cli);
+        listaActualizada.add(ter);
+        listaActualizada.add(dur);
+        for(String datos: in){
+            listaActualizada.add(datos);
+        }
+        try(ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(Constantes.rutaInfo))) {
+            escritor.writeObject(listaActualizada);
+        }
+        
+        catch (IOException ex){
+            ex.printStackTrace();
+        }
+    
     }
        
 }

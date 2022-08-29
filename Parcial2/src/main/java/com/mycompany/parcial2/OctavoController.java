@@ -4,6 +4,7 @@
  */
 package com.mycompany.parcial2;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelo.Atencion;
 import modelo.Cliente;
+import modelo.Constantes;
 import modelo.Empleado;
 
 /**
@@ -114,5 +116,61 @@ public class OctavoController implements Initializable {
 
     @FXML
     private void eliminarA(ActionEvent event) {
+        Atencion c = (Atencion)tvAtenciones.getSelectionModel().getSelectedItem();
+         ArrayList<Atencion> atencionesA = new ArrayList<>();
+         ArrayList<Atencion> listaComparar = Atencion.cargarAtencion();
+         File file = new File(Constantes.rutaAtenciones);
+         System.out.println(listaComparar);
+         //File ficheroEntrada = null;
+         //File ficheroSalida = null;
+        if(c==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("Debes seleccionar una cita");
+            alert.showAndWait();
+        }
+        else{
+            eliminado(listaComparar, c);
     }
+    }
+    public void eliminado(ArrayList<Atencion> lAtencion,Atencion aten){
+        ArrayList<Atencion> atencion = Atencion.cargarAtencion();
+        File file = new File(Constantes.rutaAtenciones);
+        File file2 = new File(Constantes.rutaAtenciones);
+        file.delete();
+        
+            for(Atencion ate:atencion){
+                int i=0;
+                if(ate.equals(aten)){
+                    //System.out.println(cli);
+                    lAtencion.remove(ate);
+                    i+=1;
+                    System.out.println(ate);
+                }
+                else{
+                    i+=1;
+                    Atencion.registrarAtencion(ate);
+                    
+                    /*try(ObjectOutputStream escritura = new ObjectOutputStream(new FileOutputStream(Constantes.rutaClientes))){
+                       
+                        escritura.writeObject(cliente);
+                        escritura.flush();
+                    }catch(IOException ex){
+                        System.out.println("ERROR");
+                    
+                    }*/
+        
+                    cita.setCellValueFactory(new PropertyValueFactory<>("cita"));
+        tvAtenciones.getItems().setAll(Atencion.cargarAtencion());
+                   // Atencion.remove(tvClientes.getSelectionModel().getSelectedItem());
+           //this.tvClientes.refresh();
+           //tvClientes.refresh();
+          
+                }
+            }
+        
+    }
+        
+        
 }

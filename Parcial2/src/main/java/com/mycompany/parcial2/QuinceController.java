@@ -6,6 +6,7 @@ package com.mycompany.parcial2;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,7 +23,7 @@ import modelo.Cita;
  */
 public class QuinceController implements Initializable {
 
-
+     //ObservableList<NovenoController> datos;
     @FXML
     private Label cliente;
     @FXML
@@ -30,7 +31,7 @@ public class QuinceController implements Initializable {
     @FXML
     private TableColumn colActividad;
     @FXML
-    private TableColumn<Cita, String> colFecha;
+    private TableColumn<NovenoController,String> colFecha;
     @FXML
     private TableColumn<BingoController, String> colAciertos;
     @FXML
@@ -45,22 +46,29 @@ public class QuinceController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println(NovenoController.cargarInformacion());
+        //datos = FXCollections.observableArrayList();
+        //this.colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        //this.tvActividades.getItems().setAll(Cita.cargarCita());
        
         
         // TODO
     }
+    //datos.add(new Quince("texto de interes"));
     public void llenarCampos(Cita c) {
-    this.colActividad.setCellValueFactory(new PropertyValueFactory<>("bingo"));
+    //this.colActividad.setCellValueFactory(new PropertyValueFactory<>("bingo"));
     //this.colFecha.setCellFactory(new PropertyValueFactory<>(c.getFecha()));
     this.cliente.setText(c.getCliente().getNombre()+" "+c.getCliente().getApellido());
         //this.cmbT.set;
      cita=c;
-     BingoController bc = new BingoController();
-     this.colFecha.setCellValueFactory(new PropertyValueFactory<>(c.getFecha()));
-     this.colAciertos.setCellValueFactory(new PropertyValueFactory<>(bc.getAciertosS()));
+     
+     //BingoController bc = new BingoController();
+     this.colFecha.setCellValueFactory(new PropertyValueFactory<>("fechF"));
+     /*this.colAciertos.setCellValueFactory(new PropertyValueFactory<>(bc.getAciertosS()));
      this.colFallos.setCellValueFactory(new PropertyValueFactory<>(bc.getFallosS()));
-     this.colTiempo.setCellValueFactory(new PropertyValueFactory<>("bc.getMinutosP()"));
-     this.tvActividades.getItems().setAll(cita.cargarCita());
+     this.colTiempo.setCellValueFactory(new PropertyValueFactory<>("bc.getMinutosP()"));*/
+     this.tvActividades.getItems().setAll(NovenoController.cargarInformacion());
+        
     }
 
 }

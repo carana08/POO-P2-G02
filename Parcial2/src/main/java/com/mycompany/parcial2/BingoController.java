@@ -4,9 +4,11 @@
  */
 package com.mycompany.parcial2;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,8 +45,10 @@ import javafx.scene.text.Font;
 
 
 import javafx.scene.layout.Background;
+import javafx.scene.layout.CornerRadii;
 import javafx.stage.Stage;
 import modelo.Cita;
+import modelo.Cliente;
 import modelo.Constantes;
 
 /**
@@ -59,8 +63,8 @@ public class BingoController {
     ArrayList<Integer> listaBin= new ArrayList<>();
     String turnoP ="";
     ArrayList<Integer> aparecidos = new ArrayList<>();
-    int correctas = 0;
-    int incorrectas = 0;
+    public int correctas = 0;
+    public int incorrectas = 0;
     @FXML
     private GridPane tabla;
     
@@ -376,11 +380,19 @@ public class BingoController {
 
         // TODO
     }
-    public static ArrayList<BingoController> cargarActividad(){
-        ArrayList<BingoController> listaRetorno  = new ArrayList<>();
-        
-        try(ObjectInputStream lector = new ObjectInputStream(new FileInputStream(Constantes.rutaActividad))) {
-            listaRetorno = (ArrayList<BingoController>)lector.readObject();   
+    public static ArrayList<String> cargarActividad(){
+        ArrayList<String> listaRetorno  = new ArrayList<>();
+        try(BufferedReader lector = new BufferedReader(new FileReader(Constantes.rutaActividad))) {
+            String linea = "";
+            while((linea=lector.readLine())!=null){
+                String [] lista = linea.split(",");
+                listaRetorno.add("bingo");
+                listaRetorno.add(lista[0]);
+                listaRetorno.add(lista[1]);
+                listaRetorno.add(lista[2]);
+            }
+            
+//listaRetorno = (ArrayList<BingoController>)lector.readObject();   
         }
         catch(FileNotFoundException e){
             System.out.println("El archivo no fue encontrado");}
@@ -443,6 +455,18 @@ public class BingoController {
  public String toString(){
      return bingo+cita.getFecha()+correctas+incorrectas+minutosP+segundosP;
  }
+/*
+    public BingoController(String bingo,String correctas,String incorrectas, String minutosP) {
+        this.bingo=bingo;
+        this.correctas= String.valueOf(correctas);
+        this.incorrectas = String.valueOf(incorrectas);
+        this.minutosP = String.valueOf(minutosP);
+        
+        
+ 
+     
+    }*/
+ 
  
  
 
