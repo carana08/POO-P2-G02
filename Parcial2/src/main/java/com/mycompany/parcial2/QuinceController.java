@@ -31,13 +31,13 @@ public class QuinceController implements Initializable {
     @FXML
     private TableColumn colActividad;
     @FXML
-    private TableColumn<NovenoController,String> colFecha;
+    private TableColumn<Cita,String> colFecha;
     @FXML
-    private TableColumn<BingoController, String> colAciertos;
+    private TableColumn<NovenoController, String> colAciertos;
     @FXML
-    private TableColumn<BingoController, String> colFallos;
+    private TableColumn<NovenoController, String> colFallos;
     @FXML
-    private TableColumn<BingoController, String> colTiempo;
+    private TableColumn<NovenoController, String> colTiempo;
         private Cita cita;
     public Cita getCita(){
     return cita;}
@@ -63,11 +63,12 @@ public class QuinceController implements Initializable {
      cita=c;
      
      //BingoController bc = new BingoController();
-     this.colFecha.setCellValueFactory(new PropertyValueFactory<>("fechF"));
+     this.colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
      /*this.colAciertos.setCellValueFactory(new PropertyValueFactory<>(bc.getAciertosS()));
      this.colFallos.setCellValueFactory(new PropertyValueFactory<>(bc.getFallosS()));
      this.colTiempo.setCellValueFactory(new PropertyValueFactory<>("bc.getMinutosP()"));*/
-     this.tvActividades.getItems().setAll(NovenoController.cargarInformacion());
+     //this.tvActividades.getItems().setAll(NovenoController.cargarInformacion());
+     this.tvActividades.getItems().setAll(Cita.cargarCita());
         
     }
 
